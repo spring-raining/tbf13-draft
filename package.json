@@ -1,0 +1,16 @@
+{
+  "name": "tbf-13draft",
+  "description": "tbf13-draft",
+  "version": "0.0.0",
+  "author": "spring-raining <harusamex.com@gmail.com>",
+  "scripts": {
+    "build": "vivliostyle build",
+    "preview": "vivliostyle preview"
+  },
+  "dependencies": {
+    "@vivliostyle/cli": "^5.5.1",
+    "@vivliostyle/theme-techbook": "^0.4.1"
+  },
+  "license": "CC-BY-3.0",
+  "private": true
+}
