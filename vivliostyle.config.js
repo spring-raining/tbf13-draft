@@ -3,7 +3,7 @@ module.exports = {
   author: '小形克宏 <ogwata@vivliostyle.org>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
   //size: '', // paper size.
-  theme: 'theme', // .css or local dir or npm package. default to undefined.
+  theme: 'themes/theme_print.css', // .css or local dir or npm package. default to undefined.
   entry: ['content/ogwata/draft-ogwata.md'],
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   output: [
