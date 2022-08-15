@@ -7,7 +7,7 @@
 Vivliostyle Pubは、「誰でもCSS組版を楽しめること」を目指して立ち上げられたWebアプリだ。面倒なインストールやコマンドラインによる操作も不要、ネットに接続されたブラウザさえあればCSS組版ができる。一昨年から開発が進められてきたが、ようやく今年4月からアルファ版が公開された。まだまだ開発途中ではあるが、一人でも多くのユーザに使っていただきたい[^1]。
 
 
-![図1 アルファ版公開がはじめったVivliostyle Pub](content/ogwata/image/fig-1.png)
+![図1 アルファ版公開がはじめったVivliostyle Pub](/content/ogwata/image/fig-1.png)
 
 
 ## Themeによるフォント指定
