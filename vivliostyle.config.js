@@ -3,7 +3,7 @@ module.exports = {
   author: 'spring-raining <harusamex.com@gmail.com>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
   // size: 'A4', // paper size.
-  theme: 'theme', // .css or local dir or npm package. default to undefined.
+  theme: 'theme/theme_screen.css', // .css or local dir or npm package. default to undefined.
   entry: ['content/index.md'],
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   output: [
