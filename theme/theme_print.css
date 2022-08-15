@@ -1,0 +1,8 @@
+@import url(theme_common.css);
+@import url(partial/page-counter.css);
+
+:root {
+  --vs-page-bleed: 3mm;
+  --vs-page-marks: crop cross;
+  --vs-page-size: JIS-B5;
+}

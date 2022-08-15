@@ -1,0 +1,125 @@
+:root {
+  /**
+   * Typography
+   */
+  --vs-font-family: sans-serif;
+  --vs-font-family-body: var(--vs-font-family);
+  --vs-font-family-heading: var(--vs-font-family);
+  --vs-font-family-monospace: monospace;
+  --vs-font-size: 1em;
+  --vs-font-size-body: var(--vs-font-size);
+  --vs-font-size-monospace: var(--vs-font-size);
+  --vs-font-size-h1: 2em;
+  --vs-font-size-h2: 1.5em;
+  --vs-font-size-h3: 1.17em;
+  --vs-font-size-h4: 1em;
+  --vs-font-size-h5: 0.83em;
+  --vs-font-size-h6: 0.67em;
+  --vs-font-size-big: 1.17em;
+  --vs-font-size-small: 0.83em;
+  --vs-font-size-sub: 0.83em;
+  --vs-font-size-sup: 0.83em;
+  --vs-font-size-rt: 50%;
+  --vs-font-weight: 400;
+  --vs-font-weight-body: var(--vs-font-weight);
+  --vs-font-weight-heading: 700;
+  --vs-font-weight-monospace: var(--vs-font-weight);
+  --vs-line-height: 1.5;
+  --vs-line-height-body: var(--vs-line-height);
+  --vs-line-height-heading: var(--vs-line-height);
+  --vs-line-height-monospace: var(--vs-line-height);
+  --vs-letter-spacing: 0;
+  --vs-letter-spacing-body: var(--vs-letter-spacing);
+  --vs-letter-spacing-heading: var(--vs-letter-spacing);
+  --vs-letter-spacing-monospace: var(--vs-letter-spacing);
+  --vs-tab-size: 4;
+
+  /**
+   * Colors
+   */
+  --vs-color-background: transparent;
+  --vs-color-body: #000;
+  --vs-color-border: currentColor;
+  --vs-color-border-hr: var(--vs-color-border);
+  --vs-color-border-table: var(--vs-color-border);
+  --vs-color-page-margin-background: var(--vs-color-background);
+  --vs-color-page-margin-body: var(--vs-color-body);
+
+  /**
+   * Spacing
+   */
+  --vs-unit-sp: 0.25rem;
+  --vs-margin-paragraph-block-start: var(--vs-unit-sp) * 4;
+  --vs-margin-paragraph-block-end: var(--vs-unit-sp) * 4;
+  --vs-margin-h1-block-start: var(--vs-unit-sp) * 2;
+  --vs-margin-h1-block-end: var(--vs-unit-sp) * 2;
+  --vs-margin-h1-inline-start: 0;
+  --vs-margin-h1-inline-end: 0;
+  --vs-margin-h2-block-start: var(--vs-unit-sp) * 3;
+  --vs-margin-h2-block-end: var(--vs-unit-sp) * 3;
+  --vs-margin-h2-inline-start: 0;
+  --vs-margin-h2-inline-end: 0;
+  --vs-margin-h3-block-start: var(--vs-unit-sp) * 4;
+  --vs-margin-h3-block-end: var(--vs-unit-sp) * 4;
+  --vs-margin-h3-inline-start: 0;
+  --vs-margin-h3-inline-end: 0;
+  --vs-margin-h4-block-start: var(--vs-unit-sp) * 5;
+  --vs-margin-h4-block-end: var(--vs-unit-sp) * 5;
+  --vs-margin-h4-inline-start: 0;
+  --vs-margin-h4-inline-end: 0;
+  --vs-margin-h5-block-start: var(--vs-unit-sp) * 6;
+  --vs-margin-h5-block-end: var(--vs-unit-sp) * 6;
+  --vs-margin-h5-inline-start: 0;
+  --vs-margin-h5-inline-end: 0;
+  --vs-margin-h6-block-start: var(--vs-unit-sp) * 8;
+  --vs-margin-h6-block-end: var(--vs-unit-sp) * 8;
+  --vs-margin-h6-inline-start: 0;
+  --vs-margin-h6-inline-end: 0;
+  --vs-margin-hr-block-start: var(--vs-unit-sp) * 2;
+  --vs-margin-hr-block-end: var(--vs-unit-sp) * 2;
+  --vs-margin-hr-inline-start: 0;
+  --vs-margin-hr-inline-end: 0;
+  --vs-margin-p-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-p-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-p-inline-start: 0;
+  --vs-margin-p-inline-end: 0;
+  --vs-margin-blockquote-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-blockquote-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-blockquote-inline-start: var(--vs-unit-sp) * 10;
+  --vs-margin-blockquote-inline-end: var(--vs-unit-sp) * 10;
+  --vs-margin-figure-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-figure-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-figure-inline-start: var(--vs-unit-sp) * 10;
+  --vs-margin-figure-inline-end: var(--vs-unit-sp) * 10;
+  --vs-margin-list-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-list-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-list-inline-start: 0;
+  --vs-margin-list-inline-end: 0;
+  --vs-margin-pre-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-pre-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-pre-inline-start: 0;
+  --vs-margin-pre-inline-end: 0;
+  --vs-margin-table-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-table-block-end: var(--vs-margin-paragraph-block-end);
+  --vs-margin-table-inline-start: 0;
+  --vs-margin-table-inline-end: 0;
+
+
+  /**
+   * Borders
+   */
+  --vs-unit-bd: 1px;
+  --vs-border-width-hr: var(--vs-unit-bd);
+  --vs-border-width-table: var(--vs-unit-bd);
+
+  /**
+   * Page layout
+   */
+  --vs-page-size: auto;
+  --vs-page-marks: none;
+  --vs-page-bleed: 0;
+  --vs-page-margin-top: 22mm;
+  --vs-page-margin-bottom: 22mm;
+  --vs-page-margin-inner: 18mm;
+  --vs-page-margin-outer: 18mm;
+}
