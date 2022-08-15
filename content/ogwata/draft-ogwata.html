@@ -11,11 +11,12 @@
       <p>小形克宏（一般社団法人ビブリオスタイル理事）</p>
       <section id="はじめに" class="level2">
         <h2>はじめに</h2>
-        <p>Vivliostyle Pubは、「誰でもCSS組版を楽しめること」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作も不要、ネットに接続されたブラウザさえあればCSS組版で本を作ることができる。一昨年から開発が進められてきたが、ようやく今年4月からアルファ版を公開した。まだまだ開発途中ではあるが、一人でも多くのユーザに使って、できればフィードバックをいただきたい<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</p>
+        <p>Vivliostyle Pubは、「誰でもCSS組版を楽しめること」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに接続されたブラウザさえあればCSS組版で本を作ることができる。一昨年から開発が進められてきたが、ようやく今年4月にアルファ版を公開するところまできた。まだまだ開発途中ではあるが、一人でも多くのユーザに使って、できればフィードバックをいただきたいと思っている<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</p>
         <figure>
           <img src="content/ogwata/image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub">
           <figcaption aria-hidden="true">図1 アルファ版公開がはじまったVivliostyle Pub</figcaption>
         </figure>
+        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js）がプレビュー用と出力用とで別々の場所に実装されている。後で詳しく述べるが、ユーザの使い心地に直結するプレビュー表示を素早くするため、このようにしたと考えられる<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
       </section>
       <section id="themeによるフォント指定" class="level2">
         <h2>Themeによるフォント指定</h2>
@@ -37,6 +38,7 @@
       <hr>
       <ol>
         <li id="fn1" role="doc-endnote"><a href="https://vivliostyle-pub-develop.vercel.app/">https://vivliostyle-pub-develop.vercel.app/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn2" role="doc-endnote">プレビュー用の組版エンジンをローカルにおくのは、Vivliostyle Pubの前身であるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。もっとも、ViolaにはまだPDF出力は実装されていばかったが、素早くプレビューするためにローカルに組版エンジンを置いている。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
