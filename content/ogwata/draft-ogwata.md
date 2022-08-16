@@ -12,7 +12,7 @@ Vivliostyle Pub[^1]は、「誰でもCSS組版を楽しめること」を目指�
 
 ところが、組版エンジンを分離させた結果、ユーザが意識しないままプレビューとPDF出力とでフォントが食い違うことが起こり得るようになった。もしフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。
 
-とはいえ、仮に食い違ってもそれはCSSにおける`font-family`の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作にすぎない。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。知らないうちにプレビューとPDF出力でページが異なってしまえば、ユーザは不信感を持つだろう。
+とはいえ、食い違ってもそれはCSSにおける`font-family`の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作にすぎない。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。知らないうちにプレビューとPDF出力でページが異なってしまえば、ユーザは不信感を持つだろう。
 
 この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿の目的はVivliostyle Pubがどのようにフォントを扱っているのかを詳しく説明することだ。これによりユーザーの混乱を少しでも防ぎ、より多くの人にVivliostyle Pubを使ってもらえればと思う。少しの間、お付き合いいただければ幸いである。
 
@@ -35,10 +35,10 @@ Vivliostyle Pubでは、どのようにしてフォントや文字サイズを�
 上記2のVivliostyle公式themeのそれぞれで指定されている`font-family`は下記の通り。
 
 - Book theme for latin font……`Georgia, serif;`
-- 文庫用のテーマ……`"游明朝", "YuMincho", serif`
-- Slide theme……`'Noto', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif`
-- Techbook (技術同人誌) theme……`'Neue Frutiger World', 'Verdana',  'Hiragino Sans', sans-serif`
-- Academic theme……`'Hiragino Mincho ProN', serif`
+- 文庫用のテーマ……`"游明朝", "YuMincho", serif;`
+- Slide theme……`'Noto', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif;`
+- Techbook (技術同人誌) theme……`'Neue Frutiger World', 'Verdana',  'Hiragino Sans', sans-serif;`
+- Academic theme……`'Hiragino Mincho ProN', serif;`
 
 
 ## 扱えるフォントの種類とそれらを指定するしくみ
@@ -69,7 +69,8 @@ Vivliostyle Pubが利用できるフォントは、以下のようにフォン�
 - ユーザーのPCにあるローカルフォント（**フォント1**）はプレビューだけで使える
 - クラウドにインストールされたフォント（**フォント2**）はPDF出力だけで使える
 - Webフォントサービスのフォント（**フォント3**）はプレビューでもPDF出力でも使える
-- また、**フォント1**と**フォント2**を一致させることで、プレビューとPDF出力とでフォントが変わることを防げる
+
+上記以外にも、**フォント1**と**フォント2**を一致させることで、プレビューとPDF出力とでフォントが変わることを防げる。
 
 
 ## プレビューとPDF出力でフォントを一致させる方法
