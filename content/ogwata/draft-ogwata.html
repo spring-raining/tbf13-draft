@@ -25,15 +25,16 @@
       </section>
       <section id="フォントを指定する方法" class="level2">
         <h2>フォントを指定する方法</h2>
-        <p>Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく、別途スタイルシートの中でそれらを指定することになっている<a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a>。</p>
-        <p>利用できるスタイルシートは下記の3種類あり、いずれもActionメニューと呼ばれるプルダウンメニューの中から選択することができる〈[Vivliostyle Pub Docs>Actionメニューの機能>Theme（スタイル情報の選択）<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a>〉。</p>
+        <p>Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく、別途スタイルシートの中でそれらを指定するという間接的な方法をとっている<a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a>。</p>
+        <p>利用できるスタイルシートは下記の3種類。</p>
         <ol>
           <li>ブラウザのデフォルトスタイルシートにもとづく必要最低限のもの（Plain theme）</li>
-          <li>Vivliostyle Themes<a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a>として公開されているnpmパッケージ（Vivliostyle公式theme）</li>
+          <li>Vivliostyle Themes<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a>として公開されているnpmパッケージ（Vivliostyle公式theme）</li>
           <li>ユーザーが自分で書いたCSSスタイルシート（Custom theme）</li>
         </ol>
-        <p>1で使用されるフォントは、使っているブラウザのデフォルトフォントだ。もっともPlain themeは手早くプレビューを確認するためのもののであり、出力は想定していない。</p>
-        <p>2のVivliostyle公式themeのなかで、それぞれ指定されている<code>font-family</code>は下記の通りだ。</p>
+        <p>いずれもActionメニューと呼ばれるプルダウンメニューの中から選択することができる〈Actionメニューの機能 > Theme（スタイル情報の選択）<a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a>〉。</p>
+        <p>上記1で使用されるフォントは、使っているブラウザのデフォルトフォントだ。もっともPlain themeは手早くプレビューを確認するためのもののであり、出力は想定していない。</p>
+        <p>上記2のVivliostyle公式themeのそれぞれで指定されている<code>font-family</code>は下記の通り。</p>
         <ul>
           <li>Book theme for latin font……<code>Georgia, serif;</code></li>
           <li>文庫用のテーマ……<code>"游明朝", "YuMincho", serif</code></li>
@@ -42,17 +43,15 @@
           <li>Academic theme……<code>'Hiragino Mincho ProN', serif</code></li>
         </ul>
       </section>
-      <section id="vivliostyle-pubで扱えるフォントの種類" class="level2">
-        <h2>Vivliostyle Pubで扱えるフォントの種類</h2>
-        <p>
-          以下の3種類の場所にあるフォントを指定することができる
-          ユーザーのPCにあるローカルフォント（フォント1）
-          クラウドにインストールされたフォント（フォント2）
-          Webフォントサービスのフォント（フォント3）
-        </p>
-      </section>
-      <section id="プレビューとpdf出力におけるフォントを指定するしくみ" class="level2">
-        <h2>プレビューとPDF出力におけるフォントを指定するしくみ</h2>
+      <section id="扱えるフォントの種類とそれらを指定するしくみ" class="level2">
+        <h2>扱えるフォントの種類とそれらを指定するしくみ</h2>
+        <p>Vivliostyle Pubが利用できるフォントは、以下のようにフォントがおかれた場所によって3つに分別できる。〈文書の作成と保存 > フォントの指定方法<a id="fnref10" href="#fn10" class="footnote-ref" role="doc-noteref"><sup>10</sup></a>〉</p>
+        <ul>
+          <li>ユーザーのPCにあるローカルフォント（フォント1）</li>
+          <li>クラウドにインストールされたフォント（フォント2）</li>
+          <li>Webフォントサービスのフォント（フォント3）</li>
+        </ul>
+        <p>上記のうち、2のリストはユーザーガイド〈文書の作成と保存 > フォントに関する補足情報 > クラウドにインストールされているフォント一覧<a id="fnref11" href="#fn11" class="footnote-ref" role="doc-noteref"><sup>11</sup></a>〉にまとめているので参考にしてほしい。</p>
         <p>
           まずプレビューにおけるフォントを指定するしくみを図示する（図1）
           次にPDF出力におけるフォントを指定するしくみを図示する（図2）
@@ -78,7 +77,6 @@
       </section>
       <section id="おわりに" class="level2">
         <h2>おわりに</h2>
-        <p><a href="https://github.com/vivliostyle/themes">https://github.com/vivliostyle/themes</a></p>
       </section>
     </section>
     <section class="footnotes" role="doc-endnotes">
@@ -91,7 +89,10 @@
         <li id="fn5" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn6" role="doc-endnote"><a href="https://github.com/ogwata/tbf13-draft">https://github.com/ogwata/tbf13-draft</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn7" role="doc-endnote">他にも、編集対象のMarkdownファイルの先頭で、HTMLの<code>span</code>要素や<code>div</code>要素の属性としてスタイル情報を指定したり、文書の冒頭で<code>style</code>要素を使ってスタイル情報を記述することができる。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn8" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn8" role="doc-endnote"><a href="https://github.com/vivliostyle/themes">https://github.com/vivliostyle/themes</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn9" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn10" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn11" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
