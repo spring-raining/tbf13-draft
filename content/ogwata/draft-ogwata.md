@@ -22,7 +22,7 @@ Vivliostyle Pub[^1]は、「誰でもCSS組版を楽しめること」を目指�
 
 ## Themeによるフォント指定
 
-現在のVivliostyle Pubでは、ワードプロセッサのように任意の部分のフォントや文字サイズを指定するようなUIはない。文書全体のスタイル情報を指定する「theme」（Vivliostyle Themes[^7]）と呼ばれる仕組みの中でフォントや文字サイズを指定することになっている[^8]。
+現在のVivliostyle Pubでは、ワードプロセッサのように任意の部分のフォントや文字サイズを指定するようなUIはない。文書全体のスタイル情報を指定する「theme」（Vivliostyle Themes[^7]）と呼ばれる仕組みの中でフォントや文字サイズを指定することになっている[^8]。このthemeはVivliostyleによりnpmパッケージとして発行されており、これをActionメニューから指定したり切り替えたりすることが可能だ。
 
 
 
@@ -42,4 +42,4 @@ Vivliostyle Pub[^1]は、「誰でもCSS組版を楽しめること」を目指�
 [^5]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/
 [^6]: https://github.com/ogwata/tbf13-draft
 [^7]: https://github.com/vivliostyle/themes
-[^8]: 他にも、編集対象の文書の先頭で、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定したり、文書の冒頭で`style`要素を使ってスタイル情報を記述することもできる。とはいえUIといえるようなものではなく、この辺りも今後の課題となろう。
+[^8]: 他にも、編集対象の文書の先頭で、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定したり、文書の冒頭で`style`要素を使ってスタイル情報を記述することもできる。とはいえUIと言えるようなものではなく、この辺りも今後の課題となろう。
