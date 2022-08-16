@@ -22,18 +22,23 @@ Vivliostyle Pub[^1]は、「誰でもCSS組版を楽しめること」を目指�
 
 ## フォントを指定する方法
 
-Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく、別途スタイルシートの中でそれらを指定することになっている[^8]。
+Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく、別途スタイルシートの中でそれらを指定することになっている[^7]。
 
-そのスタイルシートは、下記の3種類あり、いずれもActionメニューと呼ばれるプルダウンメニューの中から選択することができる〈[Vivliostyle Pub Docs>Actionメニューの機能>Theme（スタイル情報の選択）〉。
+利用できるスタイルシートは下記の3種類あり、いずれもActionメニューと呼ばれるプルダウンメニューの中から選択することができる〈[Vivliostyle Pub Docs>Actionメニューの機能>Theme（スタイル情報の選択）[^8]〉。
 
 1. ブラウザのデフォルトスタイルシートにもとづく必要最低限のもの（Plain theme）
 2. Vivliostyle Themes[^7]として公開されているnpmパッケージ（Vivliostyle公式theme）
 3. ユーザーが自分で書いたCSSスタイルシート（Custom theme）
 
+1で使用されるフォントは、使っているブラウザのデフォルトフォントだ。もっともPlain themeは手早くプレビューを確認するためのもののであり、出力は想定していない。
 
+2のVivliostyle公式themeのなかで、それぞれ指定されている`font-family`は下記の通りだ。
 
-
-このthemeはVivliostyleによりnpmパッケージとして発行されており、これをActionメニューから指定したり切り替えたりすることが可能だ。
+- Book theme for latin font……`Georgia, serif;`
+- 文庫用のテーマ……`"游明朝", "YuMincho", serif`
+- Slide theme……`'Noto', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif`
+- Techbook (技術同人誌) theme……`'Neue Frutiger World', 'Verdana',  'Hiragino Sans', sans-serif`
+- Academic theme……`'Hiragino Mincho ProN', serif`
 
 
 
@@ -76,5 +81,7 @@ Vivliostyle Pubで無条件にこれらのサービスが利用できるわけ�
 [^4]: プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（https://github.com/violapub/viola ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。
 [^5]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/
 [^6]: https://github.com/ogwata/tbf13-draft
-[^7]: https://github.com/vivliostyle/themes
-[^8]: 他にも、編集対象のMarkdownファイルの先頭で、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定したり、文書の冒頭で`style`要素を使ってスタイル情報を記述することTheme
+[^7]: 他にも、編集対象のMarkdownファイルの先頭で、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定したり、文書の冒頭で`style`要素を使ってスタイル情報を記述することができる。
+[^8]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme
+
+https://github.com/vivliostyle/themes
