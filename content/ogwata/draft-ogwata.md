@@ -22,7 +22,7 @@ Vivliostyle Pub[^1]は、「誰でもCSS組版を楽しめること」を目指�
 
 ## フォントを指定する方法
 
-Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく、別途スタイルシートの中でそれらを指定するという間接的な方法をとっている[^7]。
+Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはまだなく[^7]、別途スタイルシートの中でそれらを指定するという間接的な方法をとっている。
 
 利用できるスタイルシートは下記の3種類。
 
@@ -88,7 +88,7 @@ Vivliostyle Pubで無条件にこれらのサービスが利用できるわけ�
 [^4]: プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（https://github.com/violapub/viola ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。
 [^5]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/
 [^6]: https://github.com/ogwata/tbf13-draft
-[^7]: 他にも、編集対象のMarkdownファイルの先頭で、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定したり、文書の冒頭で`style`要素を使ってスタイル情報を記述することができる。
+[^7]: 原稿（Markdownファイル）の一部分だけフォントや文字サイズを変えたい場合、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定することができる。その他、外部スタイルシートでなく、文書の冒頭で`style`要素を使ってスタイル情報を記述することもできる。いずれにせよUIというようなものでなく、この辺りは今後の課題ではある。
 [^8]: https://github.com/vivliostyle/themes
 [^9]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme
 [^10]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts
