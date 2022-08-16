@@ -11,16 +11,17 @@
       <p>小形克宏（一般社団法人ビブリオスタイル理事）</p>
       <section id="はじめに" class="level2">
         <h2>はじめに</h2>
-        <p>Vivliostyle Pubは、「誰でもCSS組版を楽しめること」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに接続されたブラウザさえあればCSS組版で本を作ることができる。一昨年から開発が進められてきたが、ようやく今年4月にアルファ版を公開するところまできた。まだまだ開発途中ではあるが、一人でも多くのユーザに使っていただき、可能ならフィードバックをしてもらえればと思っている<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</p>
-        <figure>
+        <p>Vivliostyle Pub<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>は、「誰でもCSS組版を楽しめること」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに<ruby>繫<rt>つな</rt></ruby>がったブラウザさえあればCSS組版で本を作ることができる。一昨年から開発が進められてきたが、ようやく今年4月にアルファ版を公開するところまで辿り着いた。まだまだ開発途中ではあるが、一人でも多くのユーザに使っていただき、可能ならフィードバックしてもらえればと思っている<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
+        <p>
           <img src="content/ogwata/image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub">
-          <figcaption aria-hidden="true">図1 アルファ版公開がはじまったVivliostyle Pub</figcaption>
-        </figure>
-        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js）がプレビュー用と出力用とで別々の場所に実装されている。後で詳しく述べるが、これはユーザの使い心地に直結するプレビュー表示を少しでも早くするためだ<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
-        <p>ところが、このように組版エンジンを分離させた結果、ユーザが意識しないままプレビューとPDF出力とでフォントが変わってしまう場合があり得るようになった。もしフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
-        <p>ただし仮に食い違っても、それはCSSにおける<code>font-family</code>の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作にすぎない。とはいえ、意識しないままレビューとPDF出力とでページが食い違えば、ユーザは不信感を持ってしまうだろう。</p>
-        <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。そこで本稿ではVivliostyle Pubがどのようにフォントを扱っているのかを詳しく説明することで、ユーザーの混乱を少しでも解消し、より多くの人がVivliostyle Pubを使ってもらう契機にできればと考えた。少しの間、お付き合いいただければ幸いである。</p>
-        <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザガイド」<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>の一部を、一貫した読み物として再構成したものであることをお断りしておく。</p>
+          <img src="./content/ogwata/image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub">
+          <img src="/content/ogwata/image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub">
+        </p>
+        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクライドという具合に、別々の場所に実装されている。後で詳しく述べるが、これはユーザの使い心地に直結するプレビュー表示を少しでも早くするためだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
+        <p>ところが、組版エンジンを分離させた結果、ユーザが意識しないままプレビューとPDF出力とでフォントが変わってしまうケースが起こり得るようになった。もしフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
+        <p>ただし仮に食い違っても、それはCSSにおける<code>font-family</code>の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作にすぎない。とはいえ、同人誌印刷では1ページ違えば印刷料金が変わることもあり得る。知らないうちにレビューとPDF出力とでページが異なれば、ユーザは不信感を持ってしまうだろう。</p>
+        <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿においてVivliostyle Pubがどのようにフォントを扱っているのかを詳しく説明することで、ユーザーの混乱を少しでも解消し、より多くの人がVivliostyle Pubを使ってもらう契機にできればと考えた。少しの間、お付き合いいただければ幸いである。</p>
+        <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザガイド」<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>の一部を、一貫した読み物として再構成したものであることをお断りしておく。それから、本稿はVivliostyle Pubで執筆した。</p>
       </section>
       <section id="themeによるフォント指定" class="level2">
         <h2>Themeによるフォント指定</h2>
@@ -41,9 +42,11 @@
     <section class="footnotes" role="doc-endnotes">
       <hr>
       <ol>
-        <li id="fn1" role="doc-endnote"><a href="https://vivliostyle-pub-develop.vercel.app/">https://vivliostyle-pub-develop.vercel.app/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn2" role="doc-endnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn3" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn1" role="doc-endnote"><a href="https://github.com/vivliostyle/vivliostyle-pub">https://github.com/vivliostyle/vivliostyle-pub</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn2" role="doc-endnote"><a href="https://vivliostyle-pub-develop.vercel.app/">https://vivliostyle-pub-develop.vercel.app/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn3" role="doc-endnote"><a href="https://github.com/vivliostyle/vivliostyle.js">https://github.com/vivliostyle/vivliostyle.js</a> <a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn4" role="doc-endnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn5" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
