@@ -23,10 +23,16 @@
         <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿の目的はVivliostyle Pubがどのようにフォントを扱っているのかを詳しく説明することだ。これによりユーザーの混乱を少しでも防ぎ、より多くの人にVivliostyle Pubを使ってもらえればと思う。少しの間、お付き合いいただければ幸いである。</p>
         <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザガイド」<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>の一部を、一貫した読み物として再構成したものであることをお断りしておく。それから、本稿はVivliostyle Pubで執筆した<a id="fnref6" href="#fn6" class="footnote-ref" role="doc-noteref"><sup>6</sup></a>。</p>
       </section>
-      <section id="themeによるフォント指定" class="level2">
-        <h2>Themeによるフォント指定</h2>
-        <p>現在のVivliostyle Pubでは、ワードプロセッサのように任意の部分のフォントや文字サイズを指定するようなUIはない。文書全体のスタイル情報を指定する「theme」（Vivliostyle Themes<a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a>）と呼ばれる仕組みの中でフォントや文字サイズを指定することになっている<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a>。このthemeはVivliostyleによりnpmパッケージとして発行されており、これをActionメニューから指定したり切り替えたりすることが可能だ。</p>
-        <p>もちろん自分で作成したCSSファイルを指定することもできる（Custom theme）</p>
+      <section id="フォントを指定する方法" class="level2">
+        <h2>フォントを指定する方法</h2>
+        <p>Vivliostyle Pubでは、どのようにしてフォントや文字サイズを指定するのだろうか？　残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなUIはなく、スタイルシートの中でそれらを指定することになっている<a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a>。</p>
+        <p>そのスタイルシートは、下記の3種類あり、いずれもActionメニューと呼ばれるプルダウンメニューの中から選択することができる。</p>
+        <ol>
+          <li>ブラウザのデフォルトスタイルシートにもとづく必要最低限のもの（Plain theme）</li>
+          <li>Vivliostyle Themes<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a>として公開されているnpmパッケージ（Vivliostyle公式theme）</li>
+          <li>ユーザーが自分で書いたCSSスタイルシート（Custom theme）</li>
+        </ol>
+        <p>このthemeはVivliostyleによりnpmパッケージとして発行されており、これをActionメニューから指定したり切り替えたりすることが可能だ。</p>
       </section>
       <section id="vivliostyle-pubで扱えるフォントの種類" class="level2">
         <h2>Vivliostyle Pubで扱えるフォントの種類</h2>
@@ -75,8 +81,8 @@
         <li id="fn4" role="doc-endnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn5" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn6" role="doc-endnote"><a href="https://github.com/ogwata/tbf13-draft">https://github.com/ogwata/tbf13-draft</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn7" role="doc-endnote"><a href="https://github.com/vivliostyle/themes">https://github.com/vivliostyle/themes</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn8" role="doc-endnote">他にも、編集対象の文書の先頭で、HTMLの<code>span</code>要素や<code>div</code>要素の属性としてスタイル情報を指定したり、文書の冒頭で<code>style</code>要素を使ってスタイル情報を記述することもできる。とはいえUIと言えるようなものではなく、この辺りも今後の課題となろう。<a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn7" role="doc-endnote">他にも、編集対象の文書の先頭で、HTMLの<code>span</code>要素や<code>div</code>要素の属性としてスタイル情報を指定したり、文書の冒頭で<code>style</code>要素を使ってスタイル情報を記述することもできる。とはいえUIと言えるようなものではなく、この辺りも今後の課題となろう。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn8" role="doc-endnote"><a href="https://github.com/vivliostyle/themes">https://github.com/vivliostyle/themes</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
