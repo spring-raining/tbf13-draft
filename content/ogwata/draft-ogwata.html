@@ -13,7 +13,7 @@
         <h2>はじめに</h2>
         <p>Vivliostyle Pub<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>は、「誰でもCSS組版を楽しめること」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに<ruby>繫<rt>つな</rt></ruby>がったブラウザさえあればCSS組版で本を作ることができる。一昨年から開発が進められてきたが、ようやく今年4月にアルファ版を公開するところまで達した。まだまだ開発途中ではあるが、一人でも多くのユーザーに使っていただき、可能ならフィードバックしてもらえるとありがたい<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
         <figure>
-          <img src="./image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub">
+          <img src="./image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub" width="400">
           <figcaption aria-hidden="true">図1 アルファ版公開がはじまったVivliostyle Pub</figcaption>
         </figure>
         <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクライドという具合いに、別々の場所に実装されている。後で詳しく述べるが、これはユーザの使い心地に直結するプレビュー表示を、少しでも早くするためだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
@@ -51,16 +51,16 @@
           <li>Webフォントサービスのフォント（<strong>フォント3</strong>）</li>
         </ul>
         <p>上記<strong>フォント2</strong>のリストはユーザーガイド〈文書の作成と保存 > フォントに関する補足情報 > クラウドにインストールされているフォント一覧<a id="fnref11" href="#fn11" class="footnote-ref" role="doc-noteref"><sup>11</sup></a>〉にまとめてあるので参考にしてほしい。</p>
-        <p>それでは、上記のような3種類のフォントを使って、どのようにしてVivliostyle Pubはプレビューしたり、PDF出力したりしているのだろう？　まずプレビューにおけるフォントを指定するしくみを見てほしい（図2）</p>
+        <p>それでは、上記のような3種類のフォントを使って、どのようにしてVivliostyle Pubはプレビューしたり、PDF出力したりしているのだろう？　まずプレビューにおけるフォントを指定するしくみを図示してみよう（図2）</p>
         <figure>
-          <img src="./image/fig-2.jpg" alt="図2">
-          <figcaption aria-hidden="true">図2</figcaption>
+          <img src="./image/fig-2.jpg" alt="図2　プレビューにおけるフォント使用" width="400">
+          <figcaption aria-hidden="true">図2　プレビューにおけるフォント使用</figcaption>
         </figure>
         <p>注意してほしいのは、プレビューのために組版をおこなうVivliostyle.js（赤い四角）は、ユーザーのPC上のフロントエンドにあるということ。したがってVivliostyle.jsと同じユーザーのPCにある<strong>フォント1</strong>、及びWebフォントサービスの<strong>フォント3</strong>がプレビューで利用できる。他方、クラウドにインストールされた<strong>フォント2</strong>はこの図には見当たらず、したがってプレビューで<strong>フォント2</strong>は利用できないわけである。</p>
         <p>次にPDF出力におけるフォントを指定するしくみを見てほしい（図3）。</p>
         <figure>
-          <img src="./image/fig-3.jpg" alt="図3">
-          <figcaption aria-hidden="true">図3</figcaption>
+          <img src="./image/fig-3.jpg" alt="図3　PDF出力におけるフォント使用" width="400">
+          <figcaption aria-hidden="true">図3　PDF出力におけるフォント使用</figcaption>
         </figure>
         <p>以上をまとめてみよう。</p>
         <ul>
