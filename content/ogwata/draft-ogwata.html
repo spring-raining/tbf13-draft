@@ -18,7 +18,7 @@
         </figure>
         <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクラウドという具合いに、別々の場所に実装されている。その仕組みは後で詳しく述べるが、このようにした理由はユーザーの使い心地に直結するプレビュー表示を、少しでも早くしたかったからだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
         <p>ところが、組版エンジンを分離させた結果、ユーザーが意識しないままプレビューとPDF出力とでフォントが食い違うことが起こり得るようになった。もし両者のフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
-        <p>とはいえ、食い違ってもそれはCSSにおける<code>font-family</code>の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作とも言える。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。知らないうちにプレビューとPDF出力でページが異なってしまえば、ユーザーは不信感を持つだろう。</p>
+        <p>とはいえ、食い違ってもそれはCSSにおける<code>font-family</code>の指定に従ってフォールバックした結果であり、その意味ではユーザーが指定した動作とも言える。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。プレビューとPDF出力でページが異なることが分かれば、ユーザーはVivliostyle Pubに不信感を抱くだろう。</p>
         <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿ではVivliostyle Pubがどのようにフォントを扱っているのかを詳しく説明する。これによりユーザーの混乱を少しでも防ぎ、より多くの人にVivliostyle Pubを使ってもらえればと思う。少しの間、お付き合いいただければ幸いだ。</p>
         <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザーガイド」<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>の一部を、読み物として再構成したものであることをお断りしておく。参考のために、対応するユーザーガイドのセクションを〈　〉で示した。それから、本稿はVivliostyle Pubで執筆した<a id="fnref6" href="#fn6" class="footnote-ref" role="doc-noteref"><sup>6</sup></a>。</p>
       </section>
@@ -51,29 +51,26 @@
           <li>Webフォントサービスのフォント（<strong>フォント3</strong>）</li>
         </ul>
         <p>上記のうち<strong>フォント2</strong>のリストはユーザーガイド〈文書の作成と保存 > フォントに関する補足情報 > クラウドにインストールされているフォント一覧<a id="fnref16" href="#fn16" class="footnote-ref" role="doc-noteref"><sup>16</sup></a>〉にまとめてあるので参考にしてほしい。</p>
-        <p>それでは、上記3種類のフォントを使って、どのようにしてVivliostyle Pubはプレビューしたり、PDF出力したりしているのだろう？　まずプレビューにおけるフォントを扱う仕組みを図示してみよう（図2）</p>
+        <p>それでは、上記3種類のフォントを使って、どのようにしてVivliostyle Pubはプレビューしたり、PDF出力したりしているのだろう？　まずプレビューの仕組みを図示してみよう（図2）</p>
         <figure>
-          <img src="./image/fig-2.png" alt="図2　プレビューにおけるフォントの扱い" width="400">
-          <figcaption aria-hidden="true">図2　プレビューにおけるフォントの扱い</figcaption>
+          <img src="./image/fig-2.png" alt="図2　Vivliostyle Pubにおけるプレビューの仕組み" width="400">
+          <figcaption aria-hidden="true">図2　Vivliostyle Pubにおけるプレビューの仕組み</figcaption>
         </figure>
-        <p>一見して分かるとおり、プレビューにおいてはユーザーのPC（ローカル）にあるフロントエンドが、外部にあるGitHubリポジトリやVivliostyle公式theme、場合によってはWebフォントを読み込みプレビューを表示している。</p>
-        <p>プレビューのために実際に組版をおこなうのがVivliostyle.jsだ。図2をみると、これはユーザーのPC上のフロントエンドにある。したがってVivliostyle.jsと同じユーザーのPCにある<strong>フォント1</strong>、及びWebフォントサービスの<strong>フォント3</strong>がプレビューで利用できるわけだ。他方、クラウドにインストールされた<strong>フォント2</strong>はこの図には見当たらない。したがってプレビューで<strong>フォント2</strong>も利用できないということだ。</p>
-        <p>次にPDF出力におけるフォントを指定する仕組みを図示しよう（図3）。</p>
+        <p>プレビューのために実際に組版をおこなうのがVivliostyle.jsだ。図2をみると、これはユーザーのPC上のフロントエンドにあることが分かる。したがってVivliostyle.jsと同じユーザーのPCにある<strong>フォント1</strong>、及びWebフォントサービスの<strong>フォント3</strong>がプレビューで利用できるわけだ。他方、クラウドにインストールされた<strong>フォント2</strong>はこの図では見当たらない。つまりプレビューでは<strong>フォント2</strong>は利用できないということだ。</p>
+        <p>次にPDF出力の仕組みを図示してみよう（図3）。</p>
         <figure>
-          <img src="./image/fig-3.png" alt="図3　PDF出力におけるフォント使用" width="100%">
-          <figcaption aria-hidden="true">図3　PDF出力におけるフォント使用</figcaption>
+          <img src="./image/fig-3.png" alt="図3　Vivliostyle PubにおけるPDF出力の仕組み" width="100%">
+          <figcaption aria-hidden="true">図3　Vivliostyle PubにおけるPDF出力の仕組み</figcaption>
         </figure>
-        <p>PDF出力のために組版をおこなうVivliostyle.jsはクラウド上のバックエンドにある。だからVivliostyle.jsと同じクラウドにある<strong>フォント2</strong>、及びWebフォントサービスの<strong>フォント3</strong>がPDF出力で利用できるわけだ。</p>
-        <p>ここまでの説明をまとめてみよう。プレビューとPDF出力は、それぞれ別の組版エンジン、Vivliostyle.jsが担当する。その際、それぞれの組版エンジンは以下の3つの場所にあるフォントを使用する。</p>
+        <p>PDF出力のために組版をおこなうVivliostyle.jsはクラウド上のバックエンドにある。だからVivliostyle.jsと同じクラウドにある<strong>フォント2</strong>、及びWebフォントサービスの<strong>フォント3</strong>がPDF出力で利用できる。他方、ユーザーのPCにある<strong>フォント1</strong>はこの図には見当たらない。クラウドにあるVivliostyle.jsからは、ユーザのPCにインストールされたフォントは利用しようがないからだ。</p>
+        <p>ここまでの説明をまとめてみよう。プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：<strong>フォント1</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）が利用可能だ。</p>
+        <p>一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：<strong>フォント2</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）が利用可能だ。</p>
+        <p>このような仕組みなので、プレビューとPDF出力は別々の機構として動作しており、互いに連携することもない。プレビューを担当するVivliostyle.jsはPDF出力の際どのようなフォントが使われているのかを知るすべはなく、またPDF出力を担当するVivliostyle.jsはプレビューの際どのようなフォントが使われているのかを知るすべはないのだ。</p>
+        <p>では、PDF出力の際、クラウドにないフォントが指定された場合はどのようになるのだろう？　これを説明するのが、ユーザーガイドにある下記のリストだ</p>
         <ul>
-          <li>ユーザーのPCにあるローカルフォント（図2：<strong>フォント1</strong>）</li>
-          <li>クラウドにインストールされたフォント（図3：<strong>フォント2</strong>）</li>
-          <li>Webフォントサービスのフォント（図1、図3：<strong>フォント3</strong>）</li>
+          <li>〈文書の作成と保存 > フォントに関する補足情報 > クラウド上のVivliostyle CLIにおける代替フォントルール〉<a id="fnref17" href="#fn17" class="footnote-ref" role="doc-noteref"><sup>17</sup></a></li>
         </ul>
-        <p>プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：<strong>フォント1</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）を使う。</p>
-        <p>一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：<strong>フォント2</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）を使う。</p>
-        <p>このような仕組みなので、プレビューで使われるフォントとPDF出力で使われるフォントが、いつでも無条件に一致するのは、Webフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）だけなのである。プレビューではクラウドにインストールされたフォント（図3：<strong>フォント2</strong>）は使えず、PDF出力ではユーザーのPCにインストールされたローカルフォント（図2：<strong>フォント1</strong>）は使えない。</p>
-        <p>例えば、プレビューで使ったローカルフォント（図2：<strong>フォント1</strong>）がクラウドになかった場合、PDF出力ではクラウドにインストールされたフォントのうち、似たものに置き換えられる（→ クラウド上のVivliostyle CLIにおける代替フォントルール）。その結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生することにご注意いただきたい。</p>
+        <p>その結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するという訳なのである。</p>
       </section>
       <section id="プレビューとpdf出力でフォントを一致させる方法" class="level2">
         <h2>プレビューとPDF出力でフォントを一致させる方法</h2>
@@ -113,6 +110,9 @@
         <li id="fn12" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-slide">https://www.npmjs.com/package/@vivliostyle/theme-slide</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn13" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-techbook">https://www.npmjs.com/package/@vivliostyle/theme-techbook</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩</a></li>
         <li id="fn14" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-academic">https://www.npmjs.com/package/@vivliostyle/theme-academic</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn15" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts</a><a href="#fnref15" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn16" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7</a><a href="#fnref16" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn17" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB</a><a href="#fnref17" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
