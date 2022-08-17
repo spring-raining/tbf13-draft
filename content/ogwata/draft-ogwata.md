@@ -57,7 +57,7 @@ Vivliostyle Pubが利用できるフォントは、以下のようにフォン�
 
 一見して分かるとおり、ユーザーのPC（ローカル）
 
-注意してほしいのは、プレビューのために組版をおこなうVivliostyle.js（赤い四角）は、ユーザーのPC上のフロントエンドにあるということ。したがってVivliostyle.jsと同じユーザーのPCにある**フォント1**、及びWebフォントサービスの**フォント3**がプレビューで利用できる。他方、クラウドにインストールされた**フォント2**はこの図には見当たらず、したがってプレビューで**フォント2**は利用できないわけである。
+注意してほしいのは、プレビューのために組版をおこなうVivliostyle.jsは、ユーザーのPC上のフロントエンドにあるということ。したがってVivliostyle.jsと同じユーザーのPCにある**フォント1**、及びWebフォントサービスの**フォント3**がプレビューで利用できる。他方、クラウドにインストールされた**フォント2**はこの図には見当たらず、したがってプレビューで**フォント2**は利用できないわけである。
 
 次にPDF出力におけるフォントを指定する仕組みを見てほしい（図3）。
 
@@ -95,11 +95,11 @@ Vivliostyle Pubで無条件にこれらのサービスが利用できるわけ�
 [^7]: 原稿（Markdownファイル）の一部分だけフォントや文字サイズを変えたい場合、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定することができる。その他、外部スタイルシートでなく、文書の冒頭で`style`要素を使ってスタイル情報を記述することもできる。いずれにせよUIというようなものでなく、この辺りは今後の課題ではある。
 [^8]: https://vivliostyle.github.io/themes/#/ja/gallery
 [^9]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme
-[^10]: https://github.com/vivliostyle/themes/tree/master/packages/%40vivliostyle/theme-gutenberg
-[^11]: https://github.com/vivliostyle/themes/tree/master/packages/%40vivliostyle/theme-bunko
-[^12]: https://github.com/vivliostyle/themes/tree/master/packages/%40vivliostyle/theme-slide
-[^13]: https://github.com/vivliostyle/themes/tree/master/packages/%40vivliostyle/theme-techbook
-[^14]: https://github.com/vivliostyle/themes/tree/master/packages/%40vivliostyle/theme-academic
+[^10]: https://www.npmjs.com/package/@vivliostyle/theme-gutenberg
+[^11]: https://www.npmjs.com/package/@vivliostyle/theme-bunko
+[^12]: https://www.npmjs.com/package/@vivliostyle/theme-slide
+[^13]: https://www.npmjs.com/package/@vivliostyle/theme-techbook
+[^14]: https://www.npmjs.com/package/@vivliostyle/theme-academic
 [^15]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts
 [^16]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7
 
