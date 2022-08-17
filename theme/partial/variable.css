@@ -21,8 +21,8 @@
   --vs-font-size-h6: 0.67em;
   --vs-font-size-big: 1.17em;
   --vs-font-size-small: 0.83em;
-  --vs-font-size-sub: 0.83em;
-  --vs-font-size-sup: 0.83em;
+  --vs-font-size-sub: var(--vs-font-size-small);
+  --vs-font-size-sup: var(--vs-font-size-small);
   --vs-font-size-rt: 50%;
   --vs-font-size-blockquote: 100%;
   --vs-font-size-figcaption: 100%;
@@ -55,7 +55,7 @@
   --vs-column-width: auto;
   --vs-text-orientation: unset;
   --vs-widows-orphans: 1;
-  --vs-writing-mode: unset;
+  --vs-writing-mode: horizontal-tb;
   --vs-writing-mode-blockquote: unset;
   --vs-writing-mode-figure: unset;
   --vs-writing-mode-pre: unset;
@@ -76,6 +76,7 @@
    * Spacing
    */
   --vs-unit-sp: 0.25rem;
+  --vs-unit-nbsp: 0.5ch;
   --vs-margin-paragraph-block-start: calc(var(--vs-unit-sp) * 4);
   --vs-margin-paragraph-block-end: calc(var(--vs-unit-sp) * 4);
   --vs-margin-h1-block-start: calc(var(--vs-unit-sp) * 8);
@@ -121,7 +122,7 @@
   --vs-margin-figcaption-block-start: 0;
   --vs-margin-figcaption-block-end: 0;
   --vs-margin-figcaption-inline-start: 0;
-  --vs-margin-figcaption-inline-end: 0
+  --vs-margin-figcaption-inline-end: 0;
   --vs-margin-list-block-start: var(--vs-margin-paragraph-block-start);
   --vs-margin-list-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-list-inline-start: 0;
@@ -171,4 +172,56 @@
   --vs-page-margin-bottom: 22mm;
   --vs-page-margin-inner: 18mm;
   --vs-page-margin-outer: 18mm;
+
+  /**
+   * Footnotes
+   */
+  --vs-footnote-font-size: var(--vs-font-size-body);
+  --vs-footnote-call-content: '[' counter(footnote) ']';
+  --vs-footnote-marker-content: '[' counter(footnote) ']';
+  --vs-footnote-call-font-size: var(--vs-font-size-small);
+  --vs-footnote-call-margin-inline: var(--vs-unit-nbsp);
+  --vs-footnote-marker-margin-inline: var(--vs-unit-nbsp);
+  --vs-footnote-area-margin-block-start: calc(var(--vs-unit-sp) * 2);
+  --vs-footnote-area-margin-block-end: calc(var(--vs-unit-sp) * 2);
+  --vs-footnote-area-before-border-color: var(--vs-color-border);
+  --vs-footnote-area-before-border-width: var(--vs-unit-bd);
+
+  /**
+   * Section counters
+   */
+  --vs-section-call-display: inline;
+  --vs-section-marker-display: none;
+  --vs-section-call-sec-content: '§' target-counter(attr(href), section);
+  --vs-section-call-subsec-content: '§' target-counter(attr(href), section) '.'
+    target-counter(attr(href url), subsection);
+  --vs-section-call-subsubsec-content: '§' target-counter(attr(href), section)
+    '.' target-counter(attr(href url), subsection) '.'
+    target-counter(attr(href url), subsubsection);
+  --vs-section-call-margin-inline: var(--vs-unit-nbsp);
+  --vs-section-marker-sec-content: counter(section);
+  --vs-section-marker-subsec-content: counter(section) '.' counter(subsection);
+  --vs-section-marker-subsubsec-content: counter(section) '.'
+    counter(subsection) '.' counter(subsubsection);
+  --vs-section-marker-margin-inline: calc(var(--vs-unit-nbsp) * 4);
+
+  /**
+   * Crossref counters
+   */
+  --vs-crossref-call-display: inline;
+  --vs-crossref-marker-display: inline;
+  --vs-crossref-call-fig-content: 'Fig. ' target-counter(attr(href), fig);
+  --vs-crossref-call-tbl-content: 'Table ' target-counter(attr(href), tbl);
+  --vs-crossref-call-cite-content: '[' target-counter(attr(href), cite) ']';
+  --vs-crossref-call-margin-inline: var(--vs-unit-nbsp);
+  --vs-crossref-marker-fig-content: 'Fig. ' counter(fig) ': ';
+  --vs-crossref-marker-tbl-content: 'Table ' counter(tbl) ': ';
+  --vs-crossref-marker-cite-content: '[' counter(cite) ']';
+}
+
+:root:lang(ja) {
+  --vs-crossref-call-fig-content: '図' target-counter(attr(href), fig);
+  --vs-crossref-call-tbl-content: '表' target-counter(attr(href), tbl);
+  --vs-crossref-marker-fig-content: '図' counter(fig) ': ';
+  --vs-crossref-marker-tbl-content: '表' counter(tbl) ': ';
 }
