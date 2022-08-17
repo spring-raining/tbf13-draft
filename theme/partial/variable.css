@@ -6,6 +6,10 @@
   --vs-font-family-body: var(--vs-font-family);
   --vs-font-family-heading: var(--vs-font-family);
   --vs-font-family-monospace: monospace;
+  --vs-font-feature-settings: 'kern', 'liga', 'calt';
+  --vs-font-feature-settings-body: var(--vs-font-feature-settings);
+  --vs-font-feature-settings-heading: var(--vs-font-feature-settings);
+  --vs-font-feature-settings-monospace: normal;
   --vs-font-size: 1em;
   --vs-font-size-body: var(--vs-font-size);
   --vs-font-size-monospace: var(--vs-font-size);
@@ -20,10 +24,15 @@
   --vs-font-size-sub: 0.83em;
   --vs-font-size-sup: 0.83em;
   --vs-font-size-rt: 50%;
+  --vs-font-size-blockquote: 100%;
+  --vs-font-size-figcaption: 100%;
   --vs-font-weight: 400;
   --vs-font-weight-body: var(--vs-font-weight);
   --vs-font-weight-heading: 700;
   --vs-font-weight-monospace: var(--vs-font-weight);
+  --vs-hanging-punctuation: allow-end;
+  --vs-hyphens: auto;
+  --vs-line-break: strict;
   --vs-line-height: 1.5;
   --vs-line-height-body: var(--vs-line-height);
   --vs-line-height-heading: var(--vs-line-height);
@@ -32,7 +41,25 @@
   --vs-letter-spacing-body: var(--vs-letter-spacing);
   --vs-letter-spacing-heading: var(--vs-letter-spacing);
   --vs-letter-spacing-monospace: var(--vs-letter-spacing);
+  --vs-overflow-wrap: break-word;
   --vs-tab-size: 4;
+  --vs-text-align: auto;
+  --vs-text-align-last: auto;
+  --vs-word-break: normal;
+
+  /**
+   * Layout
+   */
+  --vs-column-count: 1;
+  --vs-column-gap: 1rem;
+  --vs-column-width: auto;
+  --vs-text-orientation: unset;
+  --vs-widows-orphans: 1;
+  --vs-writing-mode: unset;
+  --vs-writing-mode-blockquote: unset;
+  --vs-writing-mode-figure: unset;
+  --vs-writing-mode-pre: unset;
+  --vs-writing-mode-table: unset;
 
   /**
    * Colors
@@ -49,34 +76,34 @@
    * Spacing
    */
   --vs-unit-sp: 0.25rem;
-  --vs-margin-paragraph-block-start: var(--vs-unit-sp) * 4;
-  --vs-margin-paragraph-block-end: var(--vs-unit-sp) * 4;
-  --vs-margin-h1-block-start: var(--vs-unit-sp) * 2;
-  --vs-margin-h1-block-end: var(--vs-unit-sp) * 2;
+  --vs-margin-paragraph-block-start: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-paragraph-block-end: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-h1-block-start: calc(var(--vs-unit-sp) * 8);
+  --vs-margin-h1-block-end: calc(var(--vs-unit-sp) * 8);
   --vs-margin-h1-inline-start: 0;
   --vs-margin-h1-inline-end: 0;
-  --vs-margin-h2-block-start: var(--vs-unit-sp) * 3;
-  --vs-margin-h2-block-end: var(--vs-unit-sp) * 3;
+  --vs-margin-h2-block-start: calc(var(--vs-unit-sp) * 6);
+  --vs-margin-h2-block-end: calc(var(--vs-unit-sp) * 6);
   --vs-margin-h2-inline-start: 0;
   --vs-margin-h2-inline-end: 0;
-  --vs-margin-h3-block-start: var(--vs-unit-sp) * 4;
-  --vs-margin-h3-block-end: var(--vs-unit-sp) * 4;
+  --vs-margin-h3-block-start: calc(var(--vs-unit-sp) * 5);
+  --vs-margin-h3-block-end: calc(var(--vs-unit-sp) * 5);
   --vs-margin-h3-inline-start: 0;
   --vs-margin-h3-inline-end: 0;
-  --vs-margin-h4-block-start: var(--vs-unit-sp) * 5;
-  --vs-margin-h4-block-end: var(--vs-unit-sp) * 5;
+  --vs-margin-h4-block-start: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-h4-block-end: calc(var(--vs-unit-sp) * 4);
   --vs-margin-h4-inline-start: 0;
   --vs-margin-h4-inline-end: 0;
-  --vs-margin-h5-block-start: var(--vs-unit-sp) * 6;
-  --vs-margin-h5-block-end: var(--vs-unit-sp) * 6;
+  --vs-margin-h5-block-start: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-h5-block-end: calc(var(--vs-unit-sp) * 4);
   --vs-margin-h5-inline-start: 0;
   --vs-margin-h5-inline-end: 0;
-  --vs-margin-h6-block-start: var(--vs-unit-sp) * 8;
-  --vs-margin-h6-block-end: var(--vs-unit-sp) * 8;
+  --vs-margin-h6-block-start: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-h6-block-end: calc(var(--vs-unit-sp) * 4);
   --vs-margin-h6-inline-start: 0;
   --vs-margin-h6-inline-end: 0;
-  --vs-margin-hr-block-start: var(--vs-unit-sp) * 2;
-  --vs-margin-hr-block-end: var(--vs-unit-sp) * 2;
+  --vs-margin-hr-block-start: calc(var(--vs-unit-sp) * 4);
+  --vs-margin-hr-block-end: calc(var(--vs-unit-sp) * 4);
   --vs-margin-hr-inline-start: 0;
   --vs-margin-hr-inline-end: 0;
   --vs-margin-p-block-start: var(--vs-margin-paragraph-block-start);
@@ -85,12 +112,16 @@
   --vs-margin-p-inline-end: 0;
   --vs-margin-blockquote-block-start: var(--vs-margin-paragraph-block-start);
   --vs-margin-blockquote-block-end: var(--vs-margin-paragraph-block-end);
-  --vs-margin-blockquote-inline-start: var(--vs-unit-sp) * 10;
-  --vs-margin-blockquote-inline-end: var(--vs-unit-sp) * 10;
+  --vs-margin-blockquote-inline-start: calc(var(--vs-unit-sp) * 8);
+  --vs-margin-blockquote-inline-end: calc(var(--vs-unit-sp) * 8);
   --vs-margin-figure-block-start: var(--vs-margin-paragraph-block-start);
   --vs-margin-figure-block-end: var(--vs-margin-paragraph-block-end);
-  --vs-margin-figure-inline-start: var(--vs-unit-sp) * 10;
-  --vs-margin-figure-inline-end: var(--vs-unit-sp) * 10;
+  --vs-margin-figure-inline-start: calc(var(--vs-unit-sp) * 8);
+  --vs-margin-figure-inline-end: calc(var(--vs-unit-sp) * 8);
+  --vs-margin-figcaption-block-start: 0;
+  --vs-margin-figcaption-block-end: 0;
+  --vs-margin-figcaption-inline-start: 0;
+  --vs-margin-figcaption-inline-end: 0
   --vs-margin-list-block-start: var(--vs-margin-paragraph-block-start);
   --vs-margin-list-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-list-inline-start: 0;
@@ -103,7 +134,10 @@
   --vs-margin-table-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-table-inline-start: 0;
   --vs-margin-table-inline-end: 0;
-
+  --vs-padding-table-cell-block-start: var(--vs-unit-sp);
+  --vs-padding-table-cell-block-end: var(--vs-unit-sp);
+  --vs-padding-table-cell-inline-start: calc(var(--vs-unit-sp) * 2);
+  --vs-padding-table-cell-inline-end: calc(var(--vs-unit-sp) * 2);
 
   /**
    * Borders
@@ -111,6 +145,21 @@
   --vs-unit-bd: 1px;
   --vs-border-width-hr: var(--vs-unit-bd);
   --vs-border-width-table: var(--vs-unit-bd);
+  --vs-border-width-table-outer: var(--vs-border-width-table);
+  --vs-border-width-table-block-start: var(--vs-border-width-table-outer);
+  --vs-border-width-table-block-end: var(--vs-border-width-table-outer);
+  --vs-border-width-table-inline-start: var(--vs-border-width-table-outer);
+  --vs-border-width-table-inline-end: var(--vs-border-width-table-outer);
+  --vs-border-width-table-cell: var(--vs-border-width-table);
+  --vs-border-width-table-row: var(--vs-border-width-table-cell);
+  --vs-border-width-table-column: var(--vs-border-width-table-cell);
+  --vs-border-width-thead-inner: var(--vs-border-width-table-cell);
+  --vs-border-width-tfoot-inner: var(--vs-border-width-table-cell);
+
+  /**
+   * Images
+   */
+  --vs-image-resolution: from-image;
 
   /**
    * Page layout

@@ -1,10 +1,9 @@
 *,
-::before,
-::after {
+*::before,
+*::after {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: var(--vs-color-border);
 }
 
 html {
@@ -19,18 +18,12 @@ body {
 
 hr {
   height: 0;
-  border-style: solid;
 }
 
 table {
   text-indent: 0;
   border-color: inherit;
   border-collapse: collapse;
-  border-style: solid;
-}
-
-th, td {
-  border-style: solid;
 }
 
 blockquote,

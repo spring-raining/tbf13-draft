@@ -1,5 +1,12 @@
+*,
+*::before,
+*::after {
+  border-color: var(--vs-color-border);
+}
+
 html {
   font-family: var(--vs-font-family-body);
+  font-feature-settings: var(--vs-font-feature-settings-body);
   font-size: var(--vs-font-size-body);
   font-weight: var(--vs-font-weight-body);
   line-height: var(--vs-line-height-body);
@@ -8,10 +15,22 @@ html {
   color: var(--vs-color-body);
   -moz-tab-size: var(--vs-tab-size);
   tab-size: var(--vs-tab-size);
+  hyphens: var(--vs-hyphens);
+  line-break: var(--vs-line-break);
+  overflow-wrap: var(--vs-overflow-wrap);
+  word-break: var(--vs-word-break);
+  column-count: var(--vs-column-count);
+  column-gap: var(--vs-column-gap);
+  column-width: var(--vs-column-width);
+  text-orientation: var(--vs-text-orientation);
+  orphans: var(--vs-widows-orphans);
+  widows: var(--vs-widows-orphans);
+  writing-mode: var(--vs-writing-mode);
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--vs-font-family-heading);
+  font-feature-settings: var(--vs-font-feature-settings-heading);
   font-weight: var(--vs-font-weight-heading);
   line-height: var(--vs-line-height-heading);
   letter-spacing: var(--vs-letter-spacing-heading);
@@ -19,6 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 
 code, kbd, pre, samp {
   font-family: var(--vs-font-family-monospace);
+  font-feature-settings: var(--vs-font-feature-settings-monospace);
   font-size: var(--vs-font-size-monospace);
   font-weight: var(--vs-font-weight-monospace);
   line-height: var(--vs-line-height-monospace);
@@ -96,7 +116,7 @@ rt {
 hr {
   border-color: var(--vs-color-border-hr);
   border-width: 0;
-  border-top-width: var(--vs-border-width-hr);
+  border-block-start-width: var(--vs-border-width-hr);
   margin-block-start: var(--vs-margin-hr-block-start);
   margin-block-end: var(--vs-margin-hr-block-end);
   margin-inline-start: var(--vs-margin-hr-inline-start);
@@ -104,6 +124,9 @@ hr {
 }
 
 p {
+  hanging-punctuation: var(--vs-hanging-punctuation);
+  text-align: var(--vs-text-align);
+  text-align-last: var(--vs-text-align-last);
   margin-block-start: var(--vs-margin-p-block-start);
   margin-block-end: var(--vs-margin-p-block-end);
   margin-inline-start: var(--vs-margin-p-inline-start);
@@ -111,6 +134,8 @@ p {
 }
 
 blockquote {
+  writing-mode: var(--vs-writing-mode-blockquote);
+  font-size: var(--vs-font-size-blockquote);
   margin-block-start: var(--vs-margin-blockquote-block-start);
   margin-block-end: var(--vs-margin-blockquote-block-end);
   margin-inline-start: var(--vs-margin-blockquote-inline-start);
@@ -118,10 +143,29 @@ blockquote {
 }
 
 figure {
+  writing-mode: var(--vs-writing-mode-figure);
   margin-block-start: var(--vs-margin-figure-block-start);
   margin-block-end: var(--vs-margin-figure-block-end);
   margin-inline-start: var(--vs-margin-figure-inline-start);
   margin-inline-end: var(--vs-margin-figure-inline-end);
+}
+
+figure > img {
+  max-width: 100%;
+  max-height: 100%;
+  image-resolution: var(--vs-image-resolution);
+}
+
+figure > figcaption {
+  break-inside: avoid;
+}
+
+figcaption {
+  font-size: var(--vs-font-size-figcaption);
+  margin-block-start: var(--vs-margin-figcaption-block-start);
+  margin-block-end: var(--vs-margin-figcaption-block-end);
+  margin-inline-start: var(--vs-margin-figcaption-inline-start);
+  margin-inline-end: var(--vs-margin-figcaption-inline-end);
 }
 
 ul, ol, dl, menu {
@@ -132,6 +176,7 @@ ul, ol, dl, menu {
 }
 
 pre {
+  writing-mode: var(--vs-writing-mode-pre);
   margin-block-start: var(--vs-margin-pre-block-start);
   margin-block-end: var(--vs-margin-pre-block-end);
   margin-inline-start: var(--vs-margin-pre-inline-start);
@@ -139,10 +184,43 @@ pre {
 }
 
 table {
+  max-width: 100%;
+  max-height: 100%;
+  writing-mode: var(--vs-writing-mode-table);
   border-color: var(--vs-color-border-table);
-  border-width: var(--vs-border-width-table);
   margin-block-start: var(--vs-margin-table-block-start);
   margin-block-end: var(--vs-margin-table-block-end);
   margin-inline-start: var(--vs-margin-table-inline-start);
   margin-inline-end: var(--vs-margin-table-inline-end);
+  border-block-start-width: var(--vs-border-width-table-block-start, 0);
+  border-block-end-width: var(--vs-border-width-table-block-end, 0);
+  border-inline-start-width: var(--vs-border-width-table-inline-start, 0);
+  border-inline-end-width: var(--vs-border-width-table-inline-end, 0);
+}
+
+th, td {
+  padding-block-start: var(--vs-padding-table-cell-block-start);
+  padding-block-end: var(--vs-padding-table-cell-block-end);
+  padding-inline-start: var(--vs-padding-table-cell-inline-start);
+  padding-inline-end: var(--vs-padding-table-cell-inline-end);
+}
+
+tr:not(:last-child) {
+  border-block-end-width: var(--vs-border-width-table-row, 0);
+}
+
+thead > tr:last-child {
+  border-block-end-width: var(--vs-border-width-thead-inner, 0);
+}
+
+tfoot > tr:first-child {
+  border-block-start-width: var(--vs-border-width-tfoot-inner, 0);
+}
+
+th:not(:last-child), td:not(:last-child) {
+  border-inline-end-width: var(--vs-border-width-table-column, 0);
+}
+
+img {
+  image-resolution: var(--vs-image-resolution);
 }
