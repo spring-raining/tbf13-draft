@@ -10,7 +10,7 @@
   --vs-font-feature-settings-body: var(--vs-font-feature-settings);
   --vs-font-feature-settings-heading: var(--vs-font-feature-settings);
   --vs-font-feature-settings-monospace: normal;
-  --vs-font-size: 1em;
+  --vs-font-size: 16px;
   --vs-font-size-body: var(--vs-font-size);
   --vs-font-size-monospace: var(--vs-font-size);
   --vs-font-size-h1: 2em;
@@ -27,8 +27,9 @@
   --vs-font-size-blockquote: 100%;
   --vs-font-size-figcaption: 100%;
   --vs-font-weight: 400;
+  --vs-font-weight-bold: 700;
   --vs-font-weight-body: var(--vs-font-weight);
-  --vs-font-weight-heading: 700;
+  --vs-font-weight-heading: var(--vs-font-weight-bold);
   --vs-font-weight-monospace: var(--vs-font-weight);
   --vs-hanging-punctuation: allow-end;
   --vs-hyphens: auto;
@@ -45,7 +46,11 @@
   --vs-tab-size: 4;
   --vs-text-align: auto;
   --vs-text-align-last: auto;
+  --vs-text-underline-offset: auto;
+  --vs-text-underline-position: left;
   --vs-word-break: normal;
+  --vs-inset-bottom-sub: -0.25em;
+  --vs-inset-top-sup: -0.5em;
 
   /**
    * Layout
@@ -66,6 +71,7 @@
    */
   --vs-color-background: transparent;
   --vs-color-body: #000;
+  --vs-color-link: inherit;
   --vs-color-border: currentColor;
   --vs-color-border-hr: var(--vs-color-border);
   --vs-color-border-table: var(--vs-color-border);
@@ -127,6 +133,7 @@
   --vs-margin-list-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-list-inline-start: 0;
   --vs-margin-list-inline-end: 0;
+  --vs-margin-dd-inline-start: calc(var(--vs-unit-sp) * 8);
   --vs-margin-pre-block-start: var(--vs-margin-paragraph-block-start);
   --vs-margin-pre-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-pre-inline-start: 0;
@@ -135,6 +142,7 @@
   --vs-margin-table-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-table-inline-start: 0;
   --vs-margin-table-inline-end: 0;
+  --vs-padding-list-inline-start: calc(var(--vs-unit-sp) * 6);
   --vs-padding-table-cell-block-start: var(--vs-unit-sp);
   --vs-padding-table-cell-block-end: var(--vs-unit-sp);
   --vs-padding-table-cell-inline-start: calc(var(--vs-unit-sp) * 2);
@@ -156,6 +164,18 @@
   --vs-border-width-table-column: var(--vs-border-width-table-cell);
   --vs-border-width-thead-inner: var(--vs-border-width-table-cell);
   --vs-border-width-tfoot-inner: var(--vs-border-width-table-cell);
+
+  /**
+   * Lists
+   */
+  --vs-list-style-type-ul: disc;
+  --vs-list-style-type-ol: decimal;
+
+  /**
+   * Text decoration
+   */
+  --vs-text-decoration-link: underline;
+  --vs-text-decoration-link-hover: none;
 
   /**
    * Images
