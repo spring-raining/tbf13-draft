@@ -69,22 +69,31 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 
 ここまでの説明をまとめてみよう。プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：**フォント1**）、及びWebフォントサービスのフォント（図2、図3：**フォント3**）が利用可能だ。
 
-一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：**フォント2**）、及びWebフォントサービスのフォント（図2、図3：**フォント3**）が利用可能だ。
+一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：**フォント2**）、及びWebフォントサービスのフォント（図2、図3：**フォント3**）が利用可能だ。ここまでの説明で、プレビューでもPDF出力でも利用可能なのは**フォント3**だけということをよく覚えておいていただきたい。
 
-では、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイドにある下記のリストだ。
+さて、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイドにある下記のセクションだ。
 
-- 〈文書の作成と保存 > フォントに関する補足情報 > **クラウド上のVivliostyle CLIにおける代替フォントルール**〉[^17]
+- 〈文書の作成と保存 > フォントに関する補足情報 > **クラウド上のVivliostyle CLIにおける代替フォントルール**〉[^19]
 
 この代替フォントルールが適用された結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するのである。
 
 ## プレビューとPDF出力でフォントを一致させる
 
-ここまで、Vivliostyle Pubがどのようにフォントを扱っているのかを説明した。つぎに、どのようにすればプレビューとPDF出力のフォントが一致するのかを考えてみたい。
+ここまで、Vivliostyle Pubがどのようにフォントを扱っているのかを説明した。つぎに、どのようにすればプレビューとPDF出力のフォントが一致するのかを検討しよう。
 
 考え方としては、プレビューとPDF出力とで同一のフォントを利用するようにすればよい。それを実現する方法は2つある。
 
 1. Webフォントサービスのフォント（**フォント3**）を使う
 2. クラウドにインストールされたフォント（**フォント2**）を、ユーザーのPCにもインストールして指定する
+
+前節で述べたように、プレビューでもPDF出力でも利用可能なのは**フォント3（Webフォント）**だけだ。つまり、これを使えばプレビューとPDF出力とで不一致になる心配はない。詳しい指定方法はユーザーガイドの下記のセクションを参照してほしい。
+
+- 〈文書の作成と保存 > > フォントの指定方法 > Custom theme／Googleフォントの使用〉[^20]
+- 〈文書の作成と保存 > > フォントの指定方法 > Custom theme／有償Webフォントサービスの使用〉[^21]
+
+なお、有償Webフォントサービスの多くは利用規約で用途を制限しているので、利用に当たっては注意が必要だ。詳しくは〈文書の作成と保存 > フォントに関する補足情報 > 推奨する有償Webフォントサービスの用途〉[^22]を参照。
+
+つぎに上記2、クラウドにインストールされたフォント（**フォント2**）を、ユーザーのPCにもインストールして指定する
 
 いずれの場合も、Custom themeの中で指定することになる。
 
@@ -112,3 +121,6 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 [^17]: https://fonts.google.com/noto
 [^18]: https://packages.ubuntu.com/focal/ttf-mscorefonts-installer
 [^19]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB
+[^20]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8Fgoogle%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%BF%E7%94%A8
+[^21]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8
+[^22]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E6%8E%A8%E5%A5%A8%E3%81%99%E3%82%8B%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E7%94%A8%E9%80%94
