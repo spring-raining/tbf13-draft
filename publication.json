@@ -7,12 +7,26 @@
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
   "author": "spring-raining <harusamex.com@gmail.com>",
   "inLanguage": "ja",
-  "dateModified": "2022-08-09T17:35:12.730Z",
+  "dateModified": "2022-08-18T19:48:19.988Z",
   "name": "tbf13-draft",
   "readingOrder": [
     {
-      "url": "content/index.html",
-      "name": "{吾輩|わがはい}は猫である。"
+      "url": "index.html",
+      "name": "Table of Contents",
+      "rel": "contents",
+      "type": "LinkedResource"
+    },
+    {
+      "url": "content/maegaki.html",
+      "name": "まえがき"
+    },
+    {
+      "url": "content/spring-raining/index.html",
+      "name": "未定"
+    },
+    {
+      "url": "content/atogaki.html",
+      "name": "あとがき"
     }
   ],
   "resources": [],

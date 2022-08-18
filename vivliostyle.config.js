@@ -4,7 +4,14 @@ module.exports = {
   language: 'ja', // default to undefined.
   // size: 'A4', // paper size.
   theme: 'theme/theme_screen.css', // .css or local dir or npm package. default to undefined.
-  entry: ['content/index.md'],
+  entry: [
+    {
+      rel: 'contents',
+    },
+    'content/maegaki.md',
+    'content/spring-raining/index.md',
+    'content/atogaki.md',
+  ],
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   output: [
     './tbf13-draft.pdf', // the output format will be inferred from the name.
