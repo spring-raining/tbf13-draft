@@ -95,13 +95,13 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 
 つぎに上記2、クラウドにインストールされたフォント（**フォント2**）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「Noto Sans CJK JP」[^23]か、「Noto Serif CJK JP」[^24]のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。
 
-- 〈文書の作成と保存 > > フォントの指定方法 > **Custom theme／プレビューとPDF出力とでフォントを一致させる**〉[^24]
+- 〈文書の作成と保存 > > フォントの指定方法 > **Custom theme／プレビューとPDF出力とでフォントを一致させる**〉[^25]
 
 ## おわりに
 
 以上、Vivliostyle Pubがフォントを扱う仕組みを説明した。繰り返すが私たちのプロジェクトはまだまだ発展途上。それでも「CSS組版が手軽に楽しめる」という最低限の目標は、なんとかクリアしているはずだ。
 
-どうか一人でも多くの方に使っていただきたいし、さらに言えば、ぜひ開発に加わってほしい。エンジニアはもちろんだが、非エンジニアも大歓迎。Vivliostyle Pubのアカウント名をクリックすると、利用者アンケートと不具合のフィードバックが送ることができる。ぜひこれを活用してメッセージを送ってほしい。待ってます！
+どうか一人でも多くの方に使っていただきたいし、さらに言えば、ぜひ開発に加わってほしい。エンジニアはもちろんだが、非エンジニアも大歓迎。Vivliostyle Pubのアカウント名をクリックすると、利用者アンケートと不具合のフィードバックが送ることができる[^26]。ぜひこれを活用してメッセージを送ってほしい。待ってます！
 
 
 [^1]: https://github.com/vivliostyle/vivliostyle-pub
@@ -129,3 +129,4 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 [^23]: https://github.com/googlefonts/noto-cjk/tree/main/Sans
 [^24]: https://github.com/googlefonts/noto-cjk/tree/main/Serif
 [^25]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8pdf%E5%87%BA%E5%8A%9B%E3%81%A8%E3%81%A7%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%82%8B
+[^26]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/readme-first/quick-start-guide-and-required-environment#%E3%83%AD%E3%82%B0%E3%82%A2%E3%82%A6%E3%83%88%EF%BC%8F%E5%88%A9%E7%94%A8%E8%80%85%E3%82%A2%E3%83%B3%E3%82%B1%E3%83%BC%E3%83%88%E3%81%AE%E9%80%81%E4%BB%98%EF%BC%8F%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF
