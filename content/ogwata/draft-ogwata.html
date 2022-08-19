@@ -16,9 +16,9 @@
           <img src="./image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub" width="400">
           <figcaption aria-hidden="true">図1 アルファ版公開がはじまったVivliostyle Pub</figcaption>
         </figure>
-        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクラウドという具合いに、別々の場所に実装されている。その仕組みは後述するが、こうした理由はプレビュー表示を、少しでも早くしたかったからだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
-        <p>ところが、組版エンジンを分離させた結果、ユーザーが意識しないままプレビューとPDF出力とでフォントが食い違うことが起こり得るようになった。もし両者のフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
-        <p>とはいえ、食い違ったと言っても、それはCSSにおける<code>font-family</code>や、Linuxにおけるfontconfigの指定によりフォールバックした結果であり、相似のフォントで代替させる既定の動作にすぎない。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。プレビューとPDF出力でページが異なることが分かれば、ユーザーはVivliostyle Pubに不信感を抱くだろう。</p>
+        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクラウドという具合いに、別々の場所に実装されている。具体的な仕組みは後述するとして、このようにした理由はプレビュー表示を、少しでも早くしたかったからだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
+        <p>ところが、組版エンジンを分離させた結果、ユーザーが意識しないままプレビューとPDF出力とでフォントが食い違う可能性が発生した。もし両者のフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
+        <p>とはいえ、食い違ったとしても、それはCSSにおける<code>font-family</code>や、Linuxにおけるfontconfigの指定によりフォールバックした結果であり、相似のフォントで代替させる既定の動作にすぎない。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。プレビューとPDF出力でページが異なることが分かれば、ユーザーはVivliostyle Pubに不信感を抱くだろう。</p>
         <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿ではVivliostyle Pubがどのようにフォントを扱っているのかを説明する。これによりユーザーの混乱を少しでも防ぎ、より多くの人にVivliostyle Pubを使ってもらえればと思う。少しの間、お付き合いいただければ幸いだ。</p>
         <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザーガイド」<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>の一部を、読み物として再構成したものであることをお断りしておく。より深く理解するために、対応するユーザーガイドのセクションを〈　〉で示した。それから、本稿はVivliostyle Pubで執筆した<a id="fnref6" href="#fn6" class="footnote-ref" role="doc-noteref"><sup>6</sup></a>。</p>
       </section>
@@ -30,7 +30,7 @@
           <li><strong>Vivliostyle公式theme：</strong>npmパッケージとして公開されているスタイルシート<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a></li>
           <li><strong>Custom theme：</strong>ユーザーが自分で書いたCSSスタイルシート</li>
         </ol>
-        <p>いずれもActionメニューと呼ばれるプルダウンメニューの中から選択／切り替えができる〈Actionメニューの機能 > Theme（スタイル情報の選択）<a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a>〉。</p>
+        <p>いずれもActionメニューと呼ばれるプルダウンメニューの中から選択／切り替えができる〈Theme（スタイル情報の選択）<a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a>〉。</p>
         <p>上記1で使用されるフォントは、使っているブラウザで設定されたデフォルトフォントだ。ただしPlain themeは手っ取り早くプレビューを確認するためのもので、出力はあまり想定していない。</p>
         <p>上記2のVivliostyle公式themeで指定されている<code>font-family</code>は下記の通りだ。</p>
         <ul>
@@ -43,58 +43,54 @@
       </section>
       <section id="利用可能なフォントとそれらを扱う仕組み" class="level2">
         <h2>利用可能なフォントとそれらを扱う仕組み</h2>
-        <p>Vivliostyle Pubが扱えるフォントは、フォントがおかれた場所ごとに以下の3種類に分別できる。〈文書の作成と保存 > フォントの指定方法<a id="fnref15" href="#fn15" class="footnote-ref" role="doc-noteref"><sup>15</sup></a>〉</p>
+        <p>Vivliostyle Pubが扱えるフォントは、フォントがおかれた場所ごとに以下の3種類に分別できる。〈フォントの指定方法<a id="fnref15" href="#fn15" class="footnote-ref" role="doc-noteref"><sup>15</sup></a>〉</p>
         <ul>
-          <li>ユーザーのPCにあるローカルフォント（<strong>フォント1</strong>）</li>
-          <li>クラウドにインストールされたフォント（<strong>フォント2</strong>）</li>
-          <li>Webフォントサービスのフォント（<strong>フォント3</strong>）</li>
+          <li>ユーザーのPCにあるローカルフォント（<strong>フォント①</strong>）</li>
+          <li>クラウドにインストールされたフォント（<strong>フォント②</strong>）</li>
+          <li>Webフォントサービスのフォント（<strong>フォント③</strong>）</li>
         </ul>
-        <p>上記のうち<strong>フォント2</strong>のリストはユーザーガイド〈文書の作成と保存 > フォントに関する補足情報 > <strong>クラウドにインストールされているフォント一覧</strong><a id="fnref16" href="#fn16" class="footnote-ref" role="doc-noteref"><sup>16</sup></a>〉にまとめてある。詳しくはそちらを見ていただくとして、簡単に言うとNoto fonts<a id="fnref17" href="#fn17" class="footnote-ref" role="doc-noteref"><sup>17</sup></a>とMicrosoft TrueType core fonts<a id="fnref18" href="#fn18" class="footnote-ref" role="doc-noteref"><sup>18</sup></a>、およびLinuxの標準的なフォントセットだ。</p>
+        <p>上記のうち<strong>フォント②</strong>のリストはユーザーガイド〈クラウドにインストールされているフォント一覧<a id="fnref16" href="#fn16" class="footnote-ref" role="doc-noteref"><sup>16</sup></a>〉にまとめてある。詳しくはそちらを見ていただくとして、簡単に言うとNoto fonts<a id="fnref17" href="#fn17" class="footnote-ref" role="doc-noteref"><sup>17</sup></a>とMicrosoft TrueType core fonts<a id="fnref18" href="#fn18" class="footnote-ref" role="doc-noteref"><sup>18</sup></a>、およびLinuxの標準的なフォントセットだ。</p>
         <p>それでは、上記3種類のフォントを使って、Vivliostyle Pubはどのようにしてプレビューしたり、PDF出力したりしているのだろう。まずプレビューの仕組みから見てみよう（図2）。</p>
         <figure>
           <img src="./image/fig-2.png" alt="図2　Vivliostyle Pubにおけるプレビューの仕組み" width="400">
           <figcaption aria-hidden="true">図2　Vivliostyle Pubにおけるプレビューの仕組み</figcaption>
         </figure>
-        <p>プレビューのために実際に組版をおこなうのが、中央にあるVivliostyle.jsであり、これはユーザーのPC上のフロントエンドにある。したがって同じユーザーのPC上にある<strong>フォント1</strong>、そしてネットを介して利用可能なWebフォントサービスの<strong>フォント3</strong>がプレビューで利用できるわけだ。</p>
-        <p>他方、クラウドにインストールされた<strong>フォント2</strong>はこの図では見当たらない。フロントエンドにあるVivliostyle.jsはクラウド上のフォントにアクセスする手段がないからだ。つまりプレビューでは<strong>フォント2</strong>は利用できない。</p>
+        <p>プレビューのために実際に組版をおこなうのが、中央にあるVivliostyle.jsであり、これはユーザーのPC上のフロントエンドにある。したがって同じユーザーのPC上にある<strong>フォント①</strong>、そしてネットを介して利用可能なWebフォントサービスの<strong>フォント③</strong>がプレビューで利用できるわけだ。</p>
+        <p>他方、クラウドにインストールされた<strong>フォント②</strong>はこの図では見当たらない。フロントエンドにあるVivliostyle.jsからはクラウド上のフォントにアクセスする手段がないからだ。つまりプレビューでは<strong>フォント②</strong>は利用できない。</p>
         <p>次にPDF出力の仕組みを見ててみよう（図3）。</p>
         <figure>
           <img src="./image/fig-3.png" alt="図3　Vivliostyle PubにおけるPDF出力の仕組み" width="100%">
           <figcaption aria-hidden="true">図3　Vivliostyle PubにおけるPDF出力の仕組み</figcaption>
         </figure>
-        <p>PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上のバックエンドにある。だからVivliostyle.jsと同じクラウドにある<strong>フォント2</strong>、そしてネットを介して利用可能なWebフォントサービスの<strong>フォント3</strong>がPDF出力で利用できる。</p>
-        <p>他方、ユーザーのPCにある<strong>フォント1</strong>はこの図には見当たらない。クラウドにあるVivliostyle.jsからは、ユーザのPC上にあるフォントにアクセスする手段がないからだ。つまりPDF出力では<strong>フォント1</strong>は利用できない。</p>
+        <p>PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上のバックエンドにある。だからVivliostyle.jsと同じクラウドにある<strong>フォント②</strong>、そしてネットを介して利用可能なWebフォントサービスの<strong>フォント③</strong>がPDF出力で利用できる。</p>
+        <p>他方、ユーザーのPCにある<strong>フォント①</strong>はこの図には見当たらない。クラウドにあるVivliostyle.jsからは、ユーザのPC上にあるフォントにアクセスする手段がないからだ。つまりPDF出力では<strong>フォント①</strong>は利用できない。</p>
         <p>このように、プレビューとPDF出力はお互いに独立して動作している。プレビューを担当するVivliostyle.jsは、PDF出力の際どのようなフォントが使われているのかを知らず、またPDF出力を担当するVivliostyle.jsは、プレビューの際どのようなフォントが使われているのかを知らない。</p>
-        <p>ここまでの説明をまとめてみよう。プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：<strong>フォント1</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）が利用可能だ。</p>
-        <p>一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：<strong>フォント2</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント3</strong>）が利用可能だ。ここまでの説明で、プレビューでもPDF出力でも利用可能なのは<strong>フォント3</strong>だけということを覚えておいていただきたい。</p>
-        <p>さて、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイドにある下記のセクションだ。</p>
-        <ul>
-          <li>〈文書の作成と保存 > フォントに関する補足情報 > <strong>クラウド上のVivliostyle CLIにおける代替フォントルール</strong>〉<a id="fnref19" href="#fn19" class="footnote-ref" role="doc-noteref"><sup>19</sup></a></li>
-        </ul>
-        <p>この代替フォントルールが適用された結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するのである。</p>
+        <p>ここまでの説明をまとめてみよう。プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：<strong>フォント①</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント③</strong>）が利用可能だ。</p>
+        <p>一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：<strong>フォント②</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント③</strong>）が利用可能だ。ここまでの説明で、プレビューとPDF出力で共通して利用可能なのは<strong>フォント③</strong>だけということを覚えておいていただきたい。</p>
+        <p>さて、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイド〈クラウド上のVivliostyle CLIにおける代替フォントルール〉<a id="fnref19" href="#fn19" class="footnote-ref" role="doc-noteref"><sup>19</sup></a>のセクションだ。このルールが適用された結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するのである。</p>
       </section>
       <section id="プレビューとpdf出力でフォントを一致させる" class="level2">
         <h2>プレビューとPDF出力でフォントを一致させる</h2>
-        <p>ここまで、Vivliostyle Pubがどのようにフォントを扱っているのかを説明した。つぎに、どのようにすればプレビューとPDF出力のフォントが一致するのかを検討しよう。</p>
+        <p>ここまで、Vivliostyle Pubがどのようにフォントを扱っているのかを説明した。つぎに、どのようにすればプレビューとPDF出力のフォントが一致させられるのかを検討しよう。</p>
         <p>考え方としては、プレビューとPDF出力とで同一のフォントを利用するようにすればよい。それを実現する方法は2つある。</p>
         <ol>
-          <li>Webフォントサービスのフォント（<strong>フォント3</strong>）を使う</li>
-          <li>クラウドにインストールされたフォント（<strong>フォント2</strong>）を、ユーザーのPCにもインストールして指定する</li>
+          <li>Webフォントサービスのフォント（<strong>フォント③</strong>）を指定する</li>
+          <li>クラウドにインストールされたフォント（<strong>フォント②</strong>）を、ユーザーのPCにもインストールして指定する</li>
         </ol>
-        <p>前節で述べたように、プレビューでもPDF出力でも利用可能なのは<strong>フォント3</strong>（Webフォント）だけだ。要は、これをCustom themeの中で指定すれば、プレビューとPDF出力とで不一致になる心配はない。詳しい指定方法はユーザーガイドの下記のセクションを参照してほしい。</p>
+        <p>前節で述べたように、プレビューでもPDF出力でも利用可能なのは<strong>フォント③</strong>（Webフォント）だけだ。要は、これをCustom themeの中で指定すれば、プレビューとPDF出力とで不一致になる心配はない。詳しい指定方法はユーザーガイドの下記のセクションを参照してほしい。</p>
         <ul>
-          <li>〈文書の作成と保存 > > フォントの指定方法 > <strong>Custom theme／Googleフォントの使用</strong>〉<a id="fnref20" href="#fn20" class="footnote-ref" role="doc-noteref"><sup>20</sup></a></li>
-          <li>〈文書の作成と保存 > > フォントの指定方法 > <strong>Custom theme／有償Webフォントサービスの使用</strong>〉<a id="fnref21" href="#fn21" class="footnote-ref" role="doc-noteref"><sup>21</sup></a></li>
+          <li>〈Custom theme／Googleフォントの使用〉<a id="fnref20" href="#fn20" class="footnote-ref" role="doc-noteref"><sup>20</sup></a></li>
+          <li>〈Custom theme／有償Webフォントサービスの使用〉<a id="fnref21" href="#fn21" class="footnote-ref" role="doc-noteref"><sup>21</sup></a></li>
         </ul>
-        <p>なお、有償Webフォントサービスの多くは利用規約で用途を制限しており、利用にあたっては注意が必要だ。詳しくは〈文書の作成と保存 > フォントに関する補足情報 > <strong>推奨する有償Webフォントサービスの用途</strong>〉<a id="fnref22" href="#fn22" class="footnote-ref" role="doc-noteref"><sup>22</sup></a>を参照してほしい。</p>
-        <p>つぎに上記2、クラウドにインストールされたフォント（<strong>フォント2</strong>）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「Noto Sans CJK JP」<a id="fnref23" href="#fn23" class="footnote-ref" role="doc-noteref"><sup>23</sup></a>か、「Noto Serif CJK JP」<a id="fnref24" href="#fn24" class="footnote-ref" role="doc-noteref"><sup>24</sup></a>のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。</p>
+        <p>なお、有償Webフォントサービスの多くは利用規約で用途を制限しており、Vivliostyle PUBで使うにあたっては注意が必要だ。詳しくは〈推奨する有償Webフォントサービスの用途〉<a id="fnref22" href="#fn22" class="footnote-ref" role="doc-noteref"><sup>22</sup></a>を参照してほしい。</p>
+        <p>つぎに上記2、クラウドにインストールされたフォント（<strong>フォント②</strong>）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「Noto Sans CJK JP」<a id="fnref23" href="#fn23" class="footnote-ref" role="doc-noteref"><sup>23</sup></a>か、「Noto Serif CJK JP」<a id="fnref24" href="#fn24" class="footnote-ref" role="doc-noteref"><sup>24</sup></a>のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。</p>
         <ul>
-          <li>〈文書の作成と保存 > > フォントの指定方法 > <strong>Custom theme／プレビューとPDF出力とでフォントを一致させる</strong>〉<a id="fnref25" href="#fn25" class="footnote-ref" role="doc-noteref"><sup>25</sup></a></li>
+          <li>〈Custom theme／プレビューとPDF出力とでフォントを一致させる〉<a id="fnref25" href="#fn25" class="footnote-ref" role="doc-noteref"><sup>25</sup></a></li>
         </ul>
       </section>
       <section id="おわりに" class="level2">
         <h2>おわりに</h2>
-        <p>以上、Vivliostyle Pubがフォントを扱う仕組みを説明した。繰り返すが私たちのプロジェクトはまだまだ発展途上。それでも「CSS組版が手軽に楽しめる」という最低限の目標は、なんとかクリアしているはずだ。</p>
+        <p>以上、Vivliostyle Pubがフォントを扱う仕組みを説明した。繰り返しになるが私たちのプロジェクトはまだまだ発展途上。それでも「手軽にCSS組版が楽しめる」という最低限の目標は、かろうじてクリアしているはずだ。</p>
         <p>どうか一人でも多くの方に使っていただきたいし、さらに言えば、ぜひ開発に加わってほしい。エンジニアはもちろんだが、非エンジニアも大歓迎。Vivliostyle Pubのアカウント名をクリックすると、利用者アンケートと不具合のフィードバックが送ることができる<a id="fnref26" href="#fn26" class="footnote-ref" role="doc-noteref"><sup>26</sup></a>。ぜひこれを活用してメッセージを送ってほしい。待ってます！</p>
       </section>
     </section>
