@@ -5,7 +5,6 @@
     <title>Vivliostyle.jsにおけるWeb標準CSSサポートの大改善</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="村上真雄">
-    <link rel="stylesheet" href="../../theme/theme_screen.css">
   </head>
   <body>
     <section id="vivliostylejsにおけるweb標準cssサポートの大改善" class="level1">
@@ -170,6 +169,13 @@
           </ul>
           <p>など。（詳しくは<a href="https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type">CSS list-style-typeプロパティ</a>を参照）</p>
           <p>標準で定義されていないカウンタースタイルを自分で定義できる<a href="https://developer.mozilla.org/ja/docs/Web/CSS/@counter-style">@counter-style</a>が使えるようになるとより便利になります。</p>
+          <p>例：カウンタースタイルcircled-lower-latin (ⓐ, ⓑ, ⓒ, …)を定義</p>
+          <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@counter-style</span> circled-lower-latin</span> <span class="token punctuation">{</span>
+  <span class="token property">system</span><span class="token punctuation">:</span> alphabetic<span class="token punctuation">;</span>
+  <span class="token property">speak-as</span><span class="token punctuation">:</span> lower-latin<span class="token punctuation">;</span>
+  <span class="token property">symbols</span><span class="token punctuation">:</span> ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ<span class="token punctuation">;</span>
+  <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
           <p>関連Vivliostyle.js Issue:</p>
           <ul>
             <li><a href="https://github.com/vivliostyle/vivliostyle.js/issues/731">#731 Support the @counter-style CSS at-rule</a></li>

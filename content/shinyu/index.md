@@ -196,6 +196,17 @@ p.note::marker {
 
 標準で定義されていないカウンタースタイルを自分で定義できる[@counter-style](https://developer.mozilla.org/ja/docs/Web/CSS/@counter-style)が使えるようになるとより便利になります。
 
+例：カウンタースタイルcircled-lower-latin (ⓐ, ⓑ, ⓒ, …)を定義
+
+```css
+@counter-style circled-lower-latin {
+  system: alphabetic;
+  speak-as: lower-latin;
+  symbols: ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ;
+  suffix: " ";
+}
+```
+
 関連Vivliostyle.js Issue:
 
 - [#731 Support the @counter-style CSS at-rule](https://github.com/vivliostyle/vivliostyle.js/issues/731)
