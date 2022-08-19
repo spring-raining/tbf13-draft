@@ -155,7 +155,7 @@
         </section>
         <section id="カウンタースタイル定義機能-counter-style" class="level3">
           <h3>カウンタースタイル定義機能 @counter-style</h3>
-          <p>箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどがあります：</p>
+          <p>箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどが使えます：</p>
           <ul>
             <li>decimal (1, 2, 3, …)</li>
             <li>decimal-leading-zero (01, 02, 03, …, 98, 99)</li>
@@ -164,7 +164,12 @@
             <li>lower-alpha (a, b, c, …)</li>
             <li>upper-alpha (A, B, C, …)</li>
             <li>lower-greek (α, β, γ, …)</li>
+            <li>cjk-decimal (一, 二, 三, …, 一〇, 一一, …)</li>
+            <li>japanese-informal (一, 二, 三, …, 十, 十一, …)</li>
+            <li>japanese-formal (壱, 弐, 参, …, 壱拾, 壱拾壱, …)</li>
           </ul>
+          <p>など。（詳しくは<a href="https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type">CSS list-style-typeプロパティ</a>を参照）</p>
+          <p>標準で定義されていないカウンタースタイルを自分で定義できる<a href="https://developer.mozilla.org/ja/docs/Web/CSS/@counter-style">@counter-style</a>が使えるようになるとより便利になります。</p>
           <p>関連Vivliostyle.js Issue:</p>
           <ul>
             <li><a href="https://github.com/vivliostyle/vivliostyle.js/issues/731">#731 Support the @counter-style CSS at-rule</a></li>

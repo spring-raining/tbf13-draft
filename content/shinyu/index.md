@@ -179,7 +179,7 @@ p.note::marker {
 
 ### カウンタースタイル定義機能 @counter-style
 
-箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどがあります：
+箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどが使えます：
 
 - decimal (1, 2, 3, …)
 - decimal-leading-zero (01, 02, 03, …, 98, 99)
@@ -188,8 +188,13 @@ p.note::marker {
 - lower-alpha (a, b, c, …)
 - upper-alpha (A, B, C, …)
 - lower-greek (α, β, γ, …)
+- cjk-decimal (一, 二, 三, …, 一〇, 一一, …)
+- japanese-informal (一, 二, 三, …, 十, 十一, …)
+- japanese-formal (壱, 弐, 参, …, 壱拾, 壱拾壱, …)
 
+など。（詳しくは[CSS list-style-typeプロパティ](https://developer.mozilla.org/ja/docs/Web/CSS/list-style-type)を参照）
 
+標準で定義されていないカウンタースタイルを自分で定義できる[@counter-style](https://developer.mozilla.org/ja/docs/Web/CSS/@counter-style)が使えるようになるとより便利になります。
 
 関連Vivliostyle.js Issue:
 
