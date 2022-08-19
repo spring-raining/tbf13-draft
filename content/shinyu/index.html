@@ -5,6 +5,7 @@
     <title>Vivliostyle.jsにおけるWeb標準CSSサポートの大改善</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="村上真雄">
+    <link rel="stylesheet" href="../../theme/theme_screen.css">
   </head>
   <body>
     <section id="vivliostylejsにおけるweb標準cssサポートの大改善" class="level1">
@@ -154,6 +155,16 @@
         </section>
         <section id="カウンタースタイル定義機能-counter-style" class="level3">
           <h3>カウンタースタイル定義機能 @counter-style</h3>
+          <p>箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどがあります：</p>
+          <ul>
+            <li>decimal (1, 2, 3, …)</li>
+            <li>decimal-leading-zero (01, 02, 03, …, 98, 99)</li>
+            <li>lower-roman (i, ii, iii, iv, v, …)</li>
+            <li>upper-roman (I, II, III, IV, V, …)</li>
+            <li>lower-alpha (a, b, c, …)</li>
+            <li>upper-alpha (A, B, C, …)</li>
+            <li>lower-greek (α, β, γ, …)</li>
+          </ul>
           <p>関連Vivliostyle.js Issue:</p>
           <ul>
             <li><a href="https://github.com/vivliostyle/vivliostyle.js/issues/731">#731 Support the @counter-style CSS at-rule</a></li>

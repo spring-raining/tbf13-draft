@@ -179,6 +179,18 @@ p.note::marker {
 
 ### カウンタースタイル定義機能 @counter-style
 
+箇条書きの番号、ページ番号、章番号など自動連番に使うカウンタースタイル（list-style-typeプロパティやcounter()関数に指定する）は、標準で以下のものなどがあります：
+
+- decimal (1, 2, 3, …)
+- decimal-leading-zero (01, 02, 03, …, 98, 99)
+- lower-roman (i, ii, iii, iv, v, …)
+- upper-roman (I, II, III, IV, V, …)
+- lower-alpha (a, b, c, …)
+- upper-alpha (A, B, C, …)
+- lower-greek (α, β, γ, …)
+
+
+
 関連Vivliostyle.js Issue:
 
 - [#731 Support the @counter-style CSS at-rule](https://github.com/vivliostyle/vivliostyle.js/issues/731)
