@@ -202,7 +202,8 @@ p.note::marker {
 @counter-style circled-lower-latin {
   system: alphabetic;
   speak-as: lower-latin;
-  symbols: ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ;
+  symbols: ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ
+           ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ;
   suffix: " ";
 }
 ```
@@ -212,6 +213,8 @@ p.note::marker {
 - [#731 Support the @counter-style CSS at-rule](https://github.com/vivliostyle/vivliostyle.js/issues/731)
 
 ### カスケードレイヤー @layer
+
+競合するスタイルルールがあるとき、どのスタイルが適用されるかは、指定される順番やCSSセレクターの詳細度で決まります（詳しくはMDNの[「CSSカスケード入門」](https://developer.mozilla.org/ja/docs/Web/CSS/Cascade)参照）。しかし、ベースのスタイルシートに対してスタイルルールを追加して特定の要素のスタイルを変えたいときなど、CSSセレクターの詳細度に気をつけないと思うようにスタイルを上書きできないのが面倒なところです。これを解決するのが、最近のブラウザで利用可能になった[カスケードレイヤー @layer](https://developer.mozilla.org/ja/docs/Web/CSS/@layer)です。
 
 関連Vivliostyle.js Issue:
 - [#977 Support for Cascade Layers (CSS @layer at-rule)](https://github.com/vivliostyle/vivliostyle.js/issues/977)

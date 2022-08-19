@@ -173,7 +173,8 @@
           <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@counter-style</span> circled-lower-latin</span> <span class="token punctuation">{</span>
   <span class="token property">system</span><span class="token punctuation">:</span> alphabetic<span class="token punctuation">;</span>
   <span class="token property">speak-as</span><span class="token punctuation">:</span> lower-latin<span class="token punctuation">;</span>
-  <span class="token property">symbols</span><span class="token punctuation">:</span> ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ<span class="token punctuation">;</span>
+  <span class="token property">symbols</span><span class="token punctuation">:</span> ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ
+           ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ<span class="token punctuation">;</span>
   <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
           <p>関連Vivliostyle.js Issue:</p>
@@ -183,6 +184,7 @@
         </section>
         <section id="カスケードレイヤー-layer" class="level3">
           <h3>カスケードレイヤー @layer</h3>
+          <p>競合するスタイルルールがあるとき、どのスタイルが適用されるかは、指定される順番やCSSセレクターの詳細度で決まります（詳しくはMDNの<a href="https://developer.mozilla.org/ja/docs/Web/CSS/Cascade">「CSSカスケード入門」</a>参照）。しかし、ベースのスタイルシートに対してスタイルルールを追加して特定の要素のスタイルを変えたいときなど、CSSセレクターの詳細度に気をつけないと思うようにスタイルを上書きできないのが面倒なところです。これを解決するのが、最近のブラウザで利用可能になった<a href="https://developer.mozilla.org/ja/docs/Web/CSS/@layer">カスケードレイヤー @layer</a>です。</p>
           <p>関連Vivliostyle.js Issue:</p>
           <ul>
             <li><a href="https://github.com/vivliostyle/vivliostyle.js/issues/977">#977 Support for Cascade Layers (CSS @layer at-rule)</a></li>
