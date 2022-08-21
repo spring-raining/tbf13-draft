@@ -8,9 +8,51 @@
     <link rel="stylesheet" href="../../theme/theme_screen.css">
   </head>
   <body>
-    <section id="未定" class="level1">
-      <h1>未定</h1>
+    <section id="css-variable" class="level1">
+      <h1>CSS Variable</h1>
       <div class="doc-author">spring-raining</div>
+      <p>こんにちは、spring-rainingです。</p>
+      <p>
+        先日、Vivliostyleに大きなアップデートがあり、現代のブラウザで普及が進みつつあるCSS Variable (CSS変数) がVivliostyleでも使えるようになりました！
+        このCSS Variable、実はこれまでのCSSの概念を大きく覆すものであり、私たちのようなWebフロントエンドエンジニアにとってはもはや当たり前のように使われているものですが、最近のCSSの進化を知らない人にはまだまだその活用方法が知られていないようです。
+        この記事では、CSS Variableで実現できることについて、実例を交えて紹介しようと思います。
+      </p>
+      <p>ちなみに、この記事の内容は特にVivliostyle特有のものではないので、Vivliostyleだけでなく普段のWebサイト制作にも活用できる内容になっています。ぜひ使ってみてください。</p>
+      <section id="css-variable-と-css-プリプロセッサとの根本的な違い" class="level2">
+        <h2>CSS Variable と CSS プリプロセッサとの根本的な違い</h2>
+        <p>ご存知の人も多くいると思いますが、念のために本題に入る前に変数 (variable) について紹介します。</p>
+        <p>
+          変数とは、あるデータに対して後から参照ができるように名前をつけたものを表します。
+          適切に変数をつけることにより、複雑で抽象的な内容を簡潔にまとめて扱うことができます。
+          また、ある名前に割り当てられた変数の内容 (値) は後から変えることができます
+          [^ プログラミング言語によっては変数の内容を変えられないルールもありますが、CSS Variableはユーザーが定義できる全ての変数が可変です。]。
+        </p>
+        <p>
+          よくある勘違いとして、CSS Variableは変数なので、SASSやStylusなどのCSSプリプロセッサの変数と役割は変わらない、というものがあります。
+          確かにCSS Variableに保存できる情報はCSSプリプロセッサと似たようなものと言えますが、これらとは決定的に異なる機能を持っています。
+          それは、CSS Variableは <strong>その内容を任意のタイミングで変えられる</strong> という点です
+          [^ ただし、Vivliostyleの環境では組版のビルド時にスタイルシートの内容が固定されるので、CSS Variableの内容を変えた際に再度ビルドする必要があります。もっとも、PDFや紙へ出力した時点でその内容を変えることは不可能なので、Vivliostyleで動的にCSS Variableの内容を変えたいという状況は無いでしょう。]。
+          CSSプリプロセッサの変数はビルド時に内容が決まってしまうので、後からその内容を変更することができません。
+        </p>
+        <p>CSS Variableは、その内容を変えたタイミングで文字通りブラウザの表示が変わるというリアクティビティ (反応性) を持っています。このリアクティビティにより、これまではJavaScriptなどのプログラムでしか実現できなかったような表現が、最小限のCSSでできるようになっています。</p>
+      </section>
+      <section id="css-variableの基本" class="level2">
+        <h2>CSS Variableの基本</h2>
+        <p>CSS Variableを使うこと自体は非常に簡単です。以下のようにCSSで宣言することで、変数 <code>--my-variable</code> が定義されます。</p>
+        <pre class="language-css"><code class="language-css"><span class="token selector"><span class="token pseudo-class">:root</span></span> <span class="token punctuation">{</span>
+  <span class="token variable">--my-variable</span><span class="token punctuation">:</span> <span class="token color">purple</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+        <p>ここでポイントが2つあります。</p>
+        <ul>
+          <li>CSS Variableの名前はハイフン2つ (<code>--</code>) で始める必要があります。変なルールですが、既存のCSSとの互換性を保つためです。慣れましょう。</li>
+          <li>どこでも変数を定義できる一般的なプログラミング言語やCSSプリプロセッサとは異なり、CSS Variableはセレクターの中 (ここでは <code>:root</code>) で宣言する必要があります。この理由については後で紹介します。</li>
+        </ul>
+        <p>この変数を参照するためには、CSSの <code>var()</code> 関数を使います。</p>
+        <pre class="language-css"><code class="language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--my-variable</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+        <p>こうすることで、<code>--my-variable</code> の内容が展開され、<code>h1</code> 要素に <code>color: purple</code> のスタイルが適用されます。とても簡単ですね！</p>
+      </section>
     </section>
   </body>
 </html>
