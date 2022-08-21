@@ -86,8 +86,8 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 
 前節で述べたように、プレビューでもPDF出力でも利用可能なのは**フォント③**（Webフォント）だけだ。要は、これをCustom themeの中で指定すれば、プレビューとPDF出力とで不一致になる心配はない。詳しい指定方法はユーザーガイドの下記のセクションを参照してほしい。
 
-- 〈Custom theme／Googleフォントの使用〉[^20]
-- 〈Custom theme／有償Webフォントサービスの使用〉[^21]
+- 〈[Custom theme／Googleフォントの使用](https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8Fgoogle%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%BF%E7%94%A8)〉
+- 〈[Custom theme／有償Webフォントサービスの使用](https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8)〉
 
 なお、有償Webフォントサービスの多くは利用規約で用途を制限しており、Vivliostyle PUBで使うにあたっては注意が必要だ。詳しくは〈推奨する有償Webフォントサービスの用途〉[^22]を参照してほしい。
 
