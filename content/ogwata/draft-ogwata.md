@@ -93,7 +93,7 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 
 つぎに上記2、クラウドにインストールされたフォント（**フォント②**）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「[Noto Sans CJK JP](https://github.com/googlefonts/noto-cjk/tree/main/Sans)」か、「[Noto Serif CJK JP](https://github.com/googlefonts/noto-cjk/tree/main/Serif)」のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。
 
-- 〈Custom theme／プレビューとPDF出力とでフォントを一致させる〉[^25]
+- 〈[Custom theme／プレビューとPDF出力とでフォントを一致させる](https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8pdf%E5%87%BA%E5%8A%9B%E3%81%A8%E3%81%A7%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%82%8B)〉
 
 ## おわりに
 
