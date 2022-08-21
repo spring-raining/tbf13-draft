@@ -107,7 +107,7 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 [^3]: https://github.com/vivliostyle/vivliostyle.js 
 [^4]: プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（https://github.com/violapub/viola ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。
 [^5]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/
-[^6]: https://github.com/ogwata/tbf13-draft
+[^6]: そのVivliostyle Pubでコミットした履歴がこちら→https://github.com/ogwata/tbf13-draft/commits/main
 [^7]: 原稿（Markdownファイル）の一部分だけフォントや文字サイズを変えたい場合、HTMLの`span`要素や`div`要素の属性としてスタイル情報を指定することができる。その他、外部スタイルシートでなく、文書の冒頭で`style`要素を使ってスタイル情報を記述することもできる。いずれにせよUIというようなものでなく、この辺りは今後の課題ではある。
 [^8]: https://vivliostyle.github.io/themes/#/ja/gallery
 [^9]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme

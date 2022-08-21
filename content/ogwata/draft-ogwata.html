@@ -11,45 +11,45 @@
       <p>小形克宏（一般社団法人ビブリオスタイル理事）</p>
       <section id="はじめに" class="level2">
         <h2>はじめに</h2>
-        <p>Vivliostyle Pub<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>は、「誰でもCSS組版を楽しめるプロダクト」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに<ruby>繫<rt>つな</rt></ruby>がったブラウザさえあれば、誰でも無料でCSS組版による本作りができる。一昨年から開発が進められてきたが、ようやく今年4月にアルファ版を公開するところまできた。まだまだ開発途中ではあるが、一人でも多くのユーザーに使っていただき、可能ならフィードバックしてもらえるとありがたい<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
+        <p><a href="https://github.com/vivliostyle/vivliostyle-pub">Vivliostyle Pub</a>は、「誰でもCSS組版を楽しめるプロダクト」を目指して開発されたWebアプリだ。面倒なインストールやコマンドラインによる操作は不要、ネットに<ruby>繫<rt>つな</rt></ruby>がったブラウザさえあれば、誰でも無料でCSS組版による本作りができる。一昨年から開発が進められてきたが、ようやく今年4月に<a href="https://vivliostyle-pub-develop.vercel.app/">アルファ版</a>を公開するところまできた。まだまだ開発途中ではあるが、一人でも多くのユーザーに使っていただき、可能ならフィードバックしてもらえるとありがたい。</p>
         <figure>
           <img src="./image/fig-1.png" alt="図1 アルファ版公開がはじまったVivliostyle Pub" width="400">
           <figcaption aria-hidden="true">図1 アルファ版公開がはじまったVivliostyle Pub</figcaption>
         </figure>
-        <p>さて、そのVivliostyle Pubだが、組版エンジン（Vivliostyle.js<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>）がプレビュー用はローカル、PDF出力用はクラウドという具合いに、別々の場所に実装されている。具体的な仕組みは後述するとして、このようにした理由はプレビュー表示を、少しでも早くしたかったからだ<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。</p>
+        <p>さて、そのVivliostyle Pubだが、組版エンジン（<a href="https://github.com/vivliostyle/vivliostyle.js">Vivliostyle.js</a>）がプレビュー用はローカル、PDF出力用はクラウドという具合いに、別々の場所に実装されている。具体的な仕組みは後述するとして、このようにした理由はプレビュー表示を、少しでも早くしたかったからだ<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</p>
         <p>ところが、組版エンジンを分離させた結果、ユーザーが意識しないままプレビューとPDF出力とでフォントが食い違う可能性が発生するようになった。もし両者のフォントが違えば、プレビューとPDF出力とで行数やページ数が違ってしまう。</p>
         <p>とはいえ、食い違ったとしても、それはCSSにおける<code>font-family</code>や、Linuxにおけるfontconfigの指定によりフォールバックした結果であり、相似のフォントで代替させる既定の動作にすぎない。それでも、同人誌印刷では1ページ違えば印刷料金が変わることもある。プレビューとPDF出力でページが異なることが分かれば、ユーザーはVivliostyle Pubに不信感を抱くだろう。</p>
         <p>この問題はいずれ解決するべきとは思うが、アーキテクチャの深い部分に関わるものであり、すぐには無理と思われる。本稿ではVivliostyle Pubがどのようにフォントを扱っているのかを説明する。これによりユーザーの混乱を少しでも防ぎ、より多くの人にVivliostyle Pubを使ってもらえればと思う。少しの間、お付き合いいただければ幸いだ。</p>
-        <p>なお、本稿の内容は、筆者が主に担当した「Vivliostyle Pubユーザーガイド」<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>の一部を、読み物として再構成したものであることをお断りしておく。より深く理解するために、対応するユーザーガイドのセクションを〈　〉で示した。それから、本稿はVivliostyle Pubで執筆した<a id="fnref6" href="#fn6" class="footnote-ref" role="doc-noteref"><sup>6</sup></a>。</p>
+        <p>なお、本稿の内容は、筆者が主に担当した「<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">Vivliostyle Pubユーザーガイド</a>」の一部を、読み物として再構成したものであることをお断りしておく。より深く理解するために、対応するユーザーガイドのセクションを〈　〉で示した。それから、本稿はVivliostyle Pubで執筆した<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
       </section>
       <section id="フォントを指定する方法" class="level2">
         <h2>フォントを指定する方法</h2>
-        <p>まず、Vivliostyle Pubではどのようにしてフォントや文字サイズを指定するのだろうか。残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなGUIはまだなく<a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a>、別途スタイルシートの中でそれらを指定するという間接的な方法をとっている。利用できるスタイルシートは下記の3種類だ。</p>
+        <p>まず、Vivliostyle Pubではどのようにしてフォントや文字サイズを指定するのだろうか。残念ながら、既存ワードプロセッサのようにテキストを選択し、その部分のフォントや文字サイズを指定するようなGUIはまだなく<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>、別途スタイルシートの中でそれらを指定するという間接的な方法をとっている。利用できるスタイルシートは下記の3種類だ。</p>
         <ol>
-          <li><strong>Plain theme：</strong>ブラウザのデフォルトスタイルシートにもとづく必要最低限のもの</li>
-          <li><strong>Vivliostyle公式theme：</strong>npmパッケージとして公開されているスタイルシート<a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a></li>
-          <li><strong>Custom theme：</strong>ユーザーが自分で書いたCSSスタイルシート</li>
+          <li><strong>Plain theme</strong>：ブラウザのデフォルトスタイルシートにもとづく必要最低限のもの</li>
+          <li><strong>Vivliostyle公式theme</strong>：<a href="https://vivliostyle.github.io/themes/#/ja/gallery">npmパッケージとして公開されているスタイルシート</a></li>
+          <li><strong>Custom theme</strong>：ユーザーが自分で書いたCSSスタイルシート</li>
         </ol>
-        <p>いずれもActionメニューと呼ばれるプルダウンメニューの中から選択／切り替えができる〈Theme（スタイル情報の選択）<a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a>〉。</p>
+        <p>いずれもActionメニューと呼ばれるプルダウンメニューの中から選択／切り替えができる〈Theme（スタイル情報の選択）<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>〉。</p>
         <p>上記1で使用されるフォントは、使っているブラウザで設定されたデフォルトフォントだ。ただしPlain themeは手っ取り早くプレビューを確認するためのもので、出力はあまり想定していない。</p>
         <p>上記2のVivliostyle公式themeで指定されている<code>font-family</code>は下記の通りだ。</p>
         <ul>
-          <li>Book theme for latin font……<code>Georgia, serif;</code><a id="fnref10" href="#fn10" class="footnote-ref" role="doc-noteref"><sup>10</sup></a></li>
-          <li>文庫用のテーマ……<code>"游明朝", "YuMincho", serif;</code><a id="fnref11" href="#fn11" class="footnote-ref" role="doc-noteref"><sup>11</sup></a></li>
-          <li>Slide theme……<code>'Noto', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif;</code><a id="fnref12" href="#fn12" class="footnote-ref" role="doc-noteref"><sup>12</sup></a></li>
-          <li>Techbook (技術同人誌) theme……<code>'Neue Frutiger World', 'Verdana', 'Hiragino Sans', sans-serif;</code><a id="fnref13" href="#fn13" class="footnote-ref" role="doc-noteref"><sup>13</sup></a></li>
-          <li>Academic theme……<code>'Hiragino Mincho ProN', serif;</code><a id="fnref14" href="#fn14" class="footnote-ref" role="doc-noteref"><sup>14</sup></a></li>
+          <li>Book theme for latin font……<code>Georgia, serif;</code><a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a></li>
+          <li>文庫用のテーマ……<code>"游明朝", "YuMincho", serif;</code><a id="fnref6" href="#fn6" class="footnote-ref" role="doc-noteref"><sup>6</sup></a></li>
+          <li>Slide theme……<code>'Noto', 'YuGothic', 'Yu Gothic', 'Meiryo', sans-serif;</code><a id="fnref7" href="#fn7" class="footnote-ref" role="doc-noteref"><sup>7</sup></a></li>
+          <li>Techbook (技術同人誌) theme……<code>'Neue Frutiger World', 'Verdana', 'Hiragino Sans', sans-serif;</code><a id="fnref8" href="#fn8" class="footnote-ref" role="doc-noteref"><sup>8</sup></a></li>
+          <li>Academic theme……<code>'Hiragino Mincho ProN', serif;</code><a id="fnref9" href="#fn9" class="footnote-ref" role="doc-noteref"><sup>9</sup></a></li>
         </ul>
       </section>
       <section id="利用可能なフォントとそれらを扱う仕組み" class="level2">
         <h2>利用可能なフォントとそれらを扱う仕組み</h2>
-        <p>Vivliostyle Pubが扱えるフォントは、フォントがおかれた場所ごとに以下の3種類に分別できる。〈フォントの指定方法<a id="fnref15" href="#fn15" class="footnote-ref" role="doc-noteref"><sup>15</sup></a>〉</p>
+        <p>Vivliostyle Pubが扱えるフォントは、フォントがおかれた場所ごとに以下の3種類に分別できる。〈フォントの指定方法<a id="fnref10" href="#fn10" class="footnote-ref" role="doc-noteref"><sup>10</sup></a>〉</p>
         <ul>
           <li>ユーザーのPCにあるローカルフォント（<strong>フォント①</strong>）</li>
           <li>クラウドにインストールされたフォント（<strong>フォント②</strong>）</li>
           <li>Webフォントサービスのフォント（<strong>フォント③</strong>）</li>
         </ul>
-        <p>上記のうち<strong>フォント②</strong>のリストはユーザーガイド〈クラウドにインストールされているフォント一覧<a id="fnref16" href="#fn16" class="footnote-ref" role="doc-noteref"><sup>16</sup></a>〉にまとめてある。詳しくはそちらを見ていただくとして、簡単に言うとNoto fonts<a id="fnref17" href="#fn17" class="footnote-ref" role="doc-noteref"><sup>17</sup></a>とMicrosoft TrueType core fonts<a id="fnref18" href="#fn18" class="footnote-ref" role="doc-noteref"><sup>18</sup></a>、およびLinuxの標準的なフォントセットだ。</p>
+        <p>上記のうち<strong>フォント②</strong>のリストはユーザーガイド〈クラウドにインストールされているフォント一覧<a id="fnref11" href="#fn11" class="footnote-ref" role="doc-noteref"><sup>11</sup></a>〉にまとめてある。詳しくはそちらを見ていただくとして、簡単に言うとNoto fonts<a id="fnref12" href="#fn12" class="footnote-ref" role="doc-noteref"><sup>12</sup></a>とMicrosoft TrueType core fonts<a id="fnref13" href="#fn13" class="footnote-ref" role="doc-noteref"><sup>13</sup></a>、およびLinuxの標準的なフォントセットだ。</p>
         <p>それでは、上記3種類のフォントを使って、Vivliostyle Pubはどのようにしてプレビューしたり、PDF出力したりしているのだろう。まずプレビューの仕組みから見てみよう（図2）。</p>
         <figure>
           <img src="./image/fig-2.png" alt="図2　Vivliostyle Pubにおけるプレビューの仕組み" width="400">
@@ -68,7 +68,7 @@
         <p>たしかに図3にはユーザーのPCにあるフロントエンドも図示されてはいるが、これはユーザーの指示をバックエンドに伝え、またPDFができたというバックエンドからのフィードバックを画面に表示しているだけで、組版エンジン同士が連携しているわけではない。</p>
         <p>ここまでの説明をまとめてみよう。プレビューを担当するユーザーのPC上のVivliostyle.jsは、ローカルフォント（図2：<strong>フォント①</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント③</strong>）が利用可能だ。</p>
         <p>一方、PDF出力を担当するクラウド上のVivliostyle.jsは、クラウドにインストールされたフォント（図3：<strong>フォント②</strong>）、及びWebフォントサービスのフォント（図2、図3：<strong>フォント③</strong>）が利用可能だ。ここまでの説明で、プレビューとPDF出力で共通して利用可能なのは<strong>フォント③</strong>だけということを覚えておいていただきたい。</p>
-        <p>さて、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイド〈クラウド上のVivliostyle CLIにおける代替フォントルール〉<a id="fnref19" href="#fn19" class="footnote-ref" role="doc-noteref"><sup>19</sup></a>のセクションだ。このルールが適用された結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するのである。</p>
+        <p>さて、PDF出力の際にクラウドにないフォントが指定されていた場合、どのようになるのだろう。これを説明するのが、ユーザーガイド〈クラウド上のVivliostyle CLIにおける代替フォントルール〉<a id="fnref14" href="#fn14" class="footnote-ref" role="doc-noteref"><sup>14</sup></a>のセクションだ。このルールが適用された結果、プレビューとPDF出力のフォントが不一致になり、ページのズレが発生するのである。</p>
       </section>
       <section id="プレビューとpdf出力でフォントを一致させる" class="level2">
         <h2>プレビューとPDF出力でフォントを一致させる</h2>
@@ -80,50 +80,38 @@
         </ol>
         <p>前節で述べたように、プレビューでもPDF出力でも利用可能なのは<strong>フォント③</strong>（Webフォント）だけだ。要は、これをCustom themeの中で指定すれば、プレビューとPDF出力とで不一致になる心配はない。詳しい指定方法はユーザーガイドの下記のセクションを参照してほしい。</p>
         <ul>
-          <li>〈Custom theme／Googleフォントの使用〉<a id="fnref20" href="#fn20" class="footnote-ref" role="doc-noteref"><sup>20</sup></a></li>
-          <li>〈Custom theme／有償Webフォントサービスの使用〉<a id="fnref21" href="#fn21" class="footnote-ref" role="doc-noteref"><sup>21</sup></a></li>
+          <li>〈<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8Fgoogle%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%BF%E7%94%A8">Custom theme／Googleフォントの使用</a>〉</li>
+          <li>〈<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8">Custom theme／有償Webフォントサービスの使用</a>〉</li>
         </ul>
-        <p>なお、有償Webフォントサービスの多くは利用規約で用途を制限しており、Vivliostyle PUBで使うにあたっては注意が必要だ。詳しくは〈推奨する有償Webフォントサービスの用途〉<a id="fnref22" href="#fn22" class="footnote-ref" role="doc-noteref"><sup>22</sup></a>を参照してほしい。</p>
-        <p>つぎに上記2、クラウドにインストールされたフォント（<strong>フォント②</strong>）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「Noto Sans CJK JP」<a id="fnref23" href="#fn23" class="footnote-ref" role="doc-noteref"><sup>23</sup></a>か、「Noto Serif CJK JP」<a id="fnref24" href="#fn24" class="footnote-ref" role="doc-noteref"><sup>24</sup></a>のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。</p>
+        <p>なお、有償Webフォントサービスの多くは利用規約で用途を制限しており、Vivliostyle PUBで使うにあたっては注意が必要だ。詳しくは〈<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E6%8E%A8%E5%A5%A8%E3%81%99%E3%82%8B%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E7%94%A8%E9%80%94">推奨する有償Webフォントサービスの用途</a>〉を参照してほしい。</p>
+        <p>つぎに上記2、クラウドにインストールされたフォント（<strong>フォント②</strong>）を、ユーザーのPCにもインストールして指定する方法を説明しよう。「利用可能なフォントとそれらを扱う仕組み」のセクションで説明したとおり、クラウドにはGoogleによるオープンソースの多言語フォントシリーズ、Noto Fontsがインストールしてある。そのうちの日本語フォント「<a href="https://github.com/googlefonts/noto-cjk/tree/main/Sans">Noto Sans CJK JP</a>」か、「<a href="https://github.com/googlefonts/noto-cjk/tree/main/Serif">Noto Serif CJK JP</a>」のいずれかをユーザーのPCにもインストールし、これをCustom themeの中で指定すればプレビューとPDF出力とで不一致にならない。詳細は下記を参照してほしい。</p>
         <ul>
-          <li>〈Custom theme／プレビューとPDF出力とでフォントを一致させる〉<a id="fnref25" href="#fn25" class="footnote-ref" role="doc-noteref"><sup>25</sup></a></li>
+          <li>〈<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8pdf%E5%87%BA%E5%8A%9B%E3%81%A8%E3%81%A7%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%82%8B">Custom theme／プレビューとPDF出力とでフォントを一致させる</a>〉</li>
         </ul>
       </section>
       <section id="おわりに" class="level2">
         <h2>おわりに</h2>
         <p>以上、Vivliostyle Pubがフォントを扱う仕組みを説明した。繰り返しになるが私たちのプロジェクトはまだまだ発展途上。それでも「手軽にCSS組版が楽しめる」という最低限の目標は、かろうじてクリアしているはずだ。</p>
-        <p>どうか一人でも多くの方に使っていただきたいし、さらに言えば、ぜひ開発に加わってほしい。エンジニアはもちろんだが、非エンジニアも大歓迎。Vivliostyle Pubの画面右上にあるアカウント名の部分をクリックすると、利用者アンケートと不具合のフィードバックを送るプルダウンメニューが開く<a id="fnref26" href="#fn26" class="footnote-ref" role="doc-noteref"><sup>26</sup></a>。ぜひこれを活用してメッセージを送ってほしい。待ってます！</p>
+        <p>どうか一人でも多くの方に使っていただきたいし、さらに言えば、ぜひ開発に加わってほしい。エンジニアはもちろんだが、非エンジニアも大歓迎。<a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/readme-first/quick-start-guide-and-required-environment#%E3%83%AD%E3%82%B0%E3%82%A2%E3%82%A6%E3%83%88%EF%BC%8F%E5%88%A9%E7%94%A8%E8%80%85%E3%82%A2%E3%83%B3%E3%82%B1%E3%83%BC%E3%83%88%E3%81%AE%E9%80%81%E4%BB%98%EF%BC%8F%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF">Vivliostyle Pubの画面右上にあるアカウント名の部分をクリックすると、利用者アンケートと不具合のフィードバックを送るプルダウンメニューが開く</a>。ぜひこれを活用してメッセージを送ってほしい。待ってます！</p>
       </section>
     </section>
     <section class="footnotes" role="doc-endnotes">
       <hr>
       <ol>
-        <li id="fn1" role="doc-endnote"><a href="https://github.com/vivliostyle/vivliostyle-pub">https://github.com/vivliostyle/vivliostyle-pub</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn2" role="doc-endnote"><a href="https://vivliostyle-pub-develop.vercel.app/">https://vivliostyle-pub-develop.vercel.app/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn3" role="doc-endnote"><a href="https://github.com/vivliostyle/vivliostyle.js">https://github.com/vivliostyle/vivliostyle.js</a> <a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn4" role="doc-endnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn5" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn6" role="doc-endnote"><a href="https://github.com/ogwata/tbf13-draft">https://github.com/ogwata/tbf13-draft</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn7" role="doc-endnote">原稿（Markdownファイル）の一部分だけフォントや文字サイズを変えたい場合、HTMLの<code>span</code>要素や<code>div</code>要素の属性としてスタイル情報を指定することができる。その他、外部スタイルシートでなく、文書の冒頭で<code>style</code>要素を使ってスタイル情報を記述することもできる。いずれにせよUIというようなものでなく、この辺りは今後の課題ではある。<a href="#fnref7" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn8" role="doc-endnote"><a href="https://vivliostyle.github.io/themes/#/ja/gallery">https://vivliostyle.github.io/themes/#/ja/gallery</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn9" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn10" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-gutenberg">https://www.npmjs.com/package/@vivliostyle/theme-gutenberg</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn11" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-bunko">https://www.npmjs.com/package/@vivliostyle/theme-bunko</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn12" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-slide">https://www.npmjs.com/package/@vivliostyle/theme-slide</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn13" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-techbook">https://www.npmjs.com/package/@vivliostyle/theme-techbook</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn14" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-academic">https://www.npmjs.com/package/@vivliostyle/theme-academic</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn15" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts</a><a href="#fnref15" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn16" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7</a><a href="#fnref16" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn17" role="doc-endnote"><a href="https://fonts.google.com/noto">https://fonts.google.com/noto</a><a href="#fnref17" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn18" role="doc-endnote"><a href="https://packages.ubuntu.com/focal/ttf-mscorefonts-installer">https://packages.ubuntu.com/focal/ttf-mscorefonts-installer</a><a href="#fnref18" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn19" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB</a><a href="#fnref19" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn20" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8Fgoogle%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%BF%E7%94%A8">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8Fgoogle%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%BF%E7%94%A8</a><a href="#fnref20" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn21" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E4%BD%BF%E7%94%A8</a><a href="#fnref21" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn22" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E6%8E%A8%E5%A5%A8%E3%81%99%E3%82%8B%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E7%94%A8%E9%80%94">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E6%8E%A8%E5%A5%A8%E3%81%99%E3%82%8B%E6%9C%89%E5%84%9Fweb%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%AE%E7%94%A8%E9%80%94</a><a href="#fnref22" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn23" role="doc-endnote"><a href="https://github.com/googlefonts/noto-cjk/tree/main/Sans">https://github.com/googlefonts/noto-cjk/tree/main/Sans</a><a href="#fnref23" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn24" role="doc-endnote"><a href="https://github.com/googlefonts/noto-cjk/tree/main/Serif">https://github.com/googlefonts/noto-cjk/tree/main/Serif</a><a href="#fnref24" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn25" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8pdf%E5%87%BA%E5%8A%9B%E3%81%A8%E3%81%A7%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%82%8B">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts#custom-theme%EF%BC%8F%E3%83%97%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E3%81%A8pdf%E5%87%BA%E5%8A%9B%E3%81%A8%E3%81%A7%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%82%92%E4%B8%80%E8%87%B4%E3%81%95%E3%81%9B%E3%82%8B</a><a href="#fnref25" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn26" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/readme-first/quick-start-guide-and-required-environment#%E3%83%AD%E3%82%B0%E3%82%A2%E3%82%A6%E3%83%88%EF%BC%8F%E5%88%A9%E7%94%A8%E8%80%85%E3%82%A2%E3%83%B3%E3%82%B1%E3%83%BC%E3%83%88%E3%81%AE%E9%80%81%E4%BB%98%EF%BC%8F%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/readme-first/quick-start-guide-and-required-environment#%E3%83%AD%E3%82%B0%E3%82%A2%E3%82%A6%E3%83%88%EF%BC%8F%E5%88%A9%E7%94%A8%E8%80%85%E3%82%A2%E3%83%B3%E3%82%B1%E3%83%BC%E3%83%88%E3%81%AE%E9%80%81%E4%BB%98%EF%BC%8F%E4%B8%8D%E5%85%B7%E5%90%88%E3%81%AE%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%83%90%E3%83%83%E3%82%AF</a><a href="#fnref26" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn1" role="doc-endnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（<a href="https://github.com/violapub/viola">https://github.com/violapub/viola</a> ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn2" role="doc-endnote">そのVivliostyle Pubでコミットした履歴がこちら→<a href="https://github.com/ogwata/tbf13-draft/commits/main">https://github.com/ogwata/tbf13-draft/commits/main</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn3" role="doc-endnote">原稿（Markdownファイル）の一部分だけフォントや文字サイズを変えたい場合、HTMLの<code>span</code>要素や<code>div</code>要素の属性としてスタイル情報を指定することができる。その他、外部スタイルシートでなく、文書の冒頭で<code>style</code>要素を使ってスタイル情報を記述することもできる。いずれにせよUIというようなものでなく、この辺りは今後の課題ではある。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn4" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/functions-of-the-actions-menu/theme</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn5" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-gutenberg">https://www.npmjs.com/package/@vivliostyle/theme-gutenberg</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn6" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-bunko">https://www.npmjs.com/package/@vivliostyle/theme-bunko</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn7" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-slide">https://www.npmjs.com/package/@vivliostyle/theme-slide</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn8" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-techbook">https://www.npmjs.com/package/@vivliostyle/theme-techbook</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn9" role="doc-endnote"><a href="https://www.npmjs.com/package/@vivliostyle/theme-academic">https://www.npmjs.com/package/@vivliostyle/theme-academic</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn10" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/how-to-specify-fonts</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn11" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E4%B8%80%E8%A6%A7</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn12" role="doc-endnote"><a href="https://fonts.google.com/noto">https://fonts.google.com/noto</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn13" role="doc-endnote"><a href="https://packages.ubuntu.com/focal/ttf-mscorefonts-installer">https://packages.ubuntu.com/focal/ttf-mscorefonts-installer</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn14" role="doc-endnote"><a href="https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB">https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/create-and-save-documents/additional-information-on-fonts#%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E4%B8%8A%E3%81%AEvivliostyle-cli%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E4%BB%A3%E6%9B%BF%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB</a><a href="#fnref14" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
