@@ -7,12 +7,12 @@
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
   "author": "小形克宏 <ogwata@vivliostyle.org>",
   "inLanguage": "ja",
-  "dateModified": "2022-09-04T04:33:00.617Z",
+  "dateModified": "2022-09-04T10:32:45.015Z",
   "name": "tbf13-draft",
   "readingOrder": [
     {
-      "url": "index.html",
-      "name": "Table of Contents",
+      "url": "content/index.html",
+      "name": "tbf13-draft",
       "rel": "contents",
       "type": "LinkedResource"
     },
@@ -22,11 +22,11 @@
     },
     {
       "url": "content/spring-raining/index.html",
-      "name": "未定"
+      "name": "あなたが知らないかもしれない CSS 変数活用法"
     },
     {
       "url": "content/mh35/index.html",
-      "name": "GitLab CI/CDを用いた、Vivliostyle組版事始め"
+      "name": "GitLab CI/CD を用いた、Vivliostyle 組版事始め"
     },
     {
       "url": "content/akabeko/index.html",
@@ -34,15 +34,15 @@
     },
     {
       "url": "content/ogwata/index.html",
-      "name": "Vivliostyle Pubがフォントを扱う仕組み"
+      "name": "Vivliostyle Pub がフォントを扱う仕組み"
     },
     {
       "url": "content/shinyu/index.html",
-      "name": "Vivliostyle.jsにおけるWeb標準CSSサポートの大改善"
+      "name": "Vivliostyle.js における Web 標準 CSS サポートの大改善"
     },
     {
       "url": "content/atogaki.html",
-      "name": "あとがき"
+      "name": "著者プロフィール"
     }
   ],
   "resources": [],

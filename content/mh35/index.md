@@ -1,33 +1,33 @@
 ---
-title: "GitLab CI/CDを用いた、Vivliostyle組版事始め"
+title: "GitLab CI/CD を用いた、Vivliostyle 組版事始め"
 author: "MH35"
 ---
 
-# GitLab CI/CDを用いた、Vivliostyle組版事始め
+# GitLab CI/CD を用いた、Vivliostyle 組版事始め
 
-GitLab CI/CDを用いて、Vivliostyleでの製本を行うことにした。
+GitLab CI/CD を用いて、Vivliostyle での製本を行うことにした。
 
 ## 前提条件
 
 今回、以下の条件で行うものとする。
 
-* RunnerはDockerベースである
+* Runner は Docker ベースである
 * 必要なレポジトリは自前で準備する
 
 ## 手順
 
 大まかな手順としては、以下の通りである。
 
-1. ビルド用のDockerイメージを、GitLabサーバに作成する
+1. ビルド用の Docker イメージを、GitLab サーバに作成する
 2. 本のプロジェクトを作成する
-3. CIの設定ファイルを作成する
+3. CI の設定ファイルを作成する
 4. 執筆する
 
 では、それぞれの手順を見ていこう。
 
 ## Dockerイメージの作成
 
-Dockerイメージの作成には、専用のプロジェクトを作成する。まずはDockerfile本体。
+Docker イメージの作成には、専用のプロジェクトを作成する。まずは Dockerfile 本体。
 
 ```docker
 FROM node:18
@@ -54,17 +54,17 @@ build_image:
     - main
 ```
 
-これらを作成し、プロジェクトにpushすることにより、ビルダーのイメージが生成される。
+これらを作成し、プロジェクトに push することにより、ビルダーのイメージが生成される。
 
 ## 本のプロジェクトを作成する
 
-まずは、GitLab上でプロジェクトを作成する。その後、そのプロジェクトをcloneする。
+まずは、GitLab 上でプロジェクトを作成する。その後、そのプロジェクトを clone する。
 
-そこまで行ったら、レポジトリを空にして、`npm create book .`でプロジェクトの中身を作成する(空レポジトリをcloneしたなら何もしない)。
+そこまで行ったら、レポジトリを空にして、`npm create book .` でプロジェクトの中身を作成する(空レポジトリを clone したなら何もしない)。
 
-そうしたら、package.jsonのbuildのスクリプトに`--no-sandbox`のオプションをつける。Dockerコンテナはroot権限で動くため、このオプションをつけないと動作しない。
+そうしたら、package.json の build のスクリプトに `--no-sandbox` のオプションをつける。Docker コンテナは root 権限で動くため、このオプションをつけないと動作しない。
 
-その後、.gitlab-ci.ymlを、以下の内容で作成する
+その後、.gitlab-ci.yml を、以下の内容で作成する
 
 ```yaml
 stages:
@@ -82,4 +82,4 @@ build_doc:
     expire_in: '1 day'
 ```
 
-あとは`git add .`して、`git commit`して、`git push`する。ここまできたら、あとは執筆していくだけである。
+あとは `git add .` して、`git commit` して、`git push` する。ここまできたら、あとは執筆していくだけである。
