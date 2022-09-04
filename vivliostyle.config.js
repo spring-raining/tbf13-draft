@@ -2,9 +2,16 @@ module.exports = {
   title: 'tbf13-draft', // populated into `publication.json`, default to `title` of the first entry or `name` in `package.json`.
   author: '小形克宏 <ogwata@vivliostyle.org>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
-  //size: '', // paper size.
-  theme: 'themes/theme_print.css', // .css or local dir or npm package. default to undefined.
-  entry: ['content/ogwata/draft-ogwata.md'],
+  // size: 'A4', // paper size.
+  theme: 'theme/theme_screen.css', // .css or local dir or npm package. default to undefined.
+  entry: [
+    {
+      rel: 'contents',
+    },
+    'content/maegaki.md',
+    'content/spring-raining/index.md',
+    'content/atogaki.md',
+  ],
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
   output: [
     './draft-ogwata.md.pdf', // the output format will be inferred from the name.
