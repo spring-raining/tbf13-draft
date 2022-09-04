@@ -119,7 +119,7 @@ CSS Variableではどの色の指定方法も使えます。
 
 ```css
 .fancy-box {
-  background-color: rgb(var(--box-theme-color) 0.5);
+  background-color: rgb(var(--box-theme-color) / 0.5);
 }
 ```
 
