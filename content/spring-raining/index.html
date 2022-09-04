@@ -5,7 +5,7 @@
     <title>未定</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="spring-raining">
-    <link rel="stylesheet" href="../../theme/theme_screen.css">
+    <link rel="stylesheet" href="../../theme/theme_print.css">
   </head>
   <body>
     <section id="css-variable" class="level1">
@@ -65,7 +65,7 @@
 <span class="token punctuation">}</span></code></pre>
         <p><code>.foo</code> と <code>p</code> という2つのセレクターはどちらも <code>&#x3C;p class="foo">&#x3C;/p></code> に対して適用されますが、実際にはこの場合 <code>color: red</code> となります。</p>
         <p>
-          CSSには <strong>詳細度</strong> という考え方があり、スタイルの指定の中で競合する設定があった場合に、セレクターの章再度にしたがってスタイルが決まるというルールがあります。
+          CSSには <strong>詳細度</strong> という考え方があり、スタイルの指定の中で競合する設定があった場合に、セレクターの詳細度にしたがってスタイルが決まるというルールがあります。
           この場合、<code>p</code> よりも <code>.foo</code> のセレクターの方が詳細度が高いため、こちらの指定が優先して適用されます。
           また、セレクターが同じ詳細度の場合、後から指定した方が適用されます。
         </p>
@@ -110,7 +110,7 @@
           たとえば、<code>--box-theme-color</code> と同じ色で透明度が50%の色を得たい場合でも、次のように指定することができます。
         </p>
         <pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.fancy-box</span></span> <span class="token punctuation">{</span>
-  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span><span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--box-theme-color</span><span class="token punctuation">)</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span><span class="token function">var</span><span class="token punctuation">(</span><span class="token variable">--box-theme-color</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
         <p>
           <code>rgb()</code> 関数 (もしくは <code>rgba()</code> 関数) は、RGBの3要素の他に透明度を指定する4つ目の引数 (関数に与える値) を与えることができ、この例のように <code>0.5</code> を与えることで透明度が50%の色が得られます。

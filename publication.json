@@ -5,9 +5,9 @@
   ],
   "type": "Book",
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
-  "author": "spring-raining <harusamex.com@gmail.com>",
+  "author": "小形克宏 <ogwata@vivliostyle.org>",
   "inLanguage": "ja",
-  "dateModified": "2022-08-18T19:48:19.988Z",
+  "dateModified": "2022-09-04T04:33:00.617Z",
   "name": "tbf13-draft",
   "readingOrder": [
     {
@@ -23,6 +23,22 @@
     {
       "url": "content/spring-raining/index.html",
       "name": "未定"
+    },
+    {
+      "url": "content/mh35/index.html",
+      "name": "GitLab CI/CDを用いた、Vivliostyle組版事始め"
+    },
+    {
+      "url": "content/akabeko/index.html",
+      "name": "rem へ寄せてゆく"
+    },
+    {
+      "url": "content/ogwata/index.html",
+      "name": "Vivliostyle Pubがフォントを扱う仕組み"
+    },
+    {
+      "url": "content/shinyu/index.html",
+      "name": "Vivliostyle.jsにおけるWeb標準CSSサポートの大改善"
     },
     {
       "url": "content/atogaki.html",

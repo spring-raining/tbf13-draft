@@ -3,13 +3,17 @@ module.exports = {
   author: '小形克宏 <ogwata@vivliostyle.org>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
   // size: 'A4', // paper size.
-  theme: 'theme/theme_screen.css', // .css or local dir or npm package. default to undefined.
+  theme: 'theme/theme_print.css', // .css or local dir or npm package. default to undefined.
   entry: [
     {
       rel: 'contents',
     },
     'content/maegaki.md',
     'content/spring-raining/index.md',
+    'content/mh35/index.md',
+    'content/akabeko/index.md',
+    'content/ogwata/index.md',
+    'content/shinyu/index.md',
     'content/atogaki.md',
   ],
   // entryContext: './manuscripts', // default to '.' (relative to `vivliostyle.config.js`).
