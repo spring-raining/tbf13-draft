@@ -1,3 +1,9 @@
+---
+title: Vivliostyle Pubがフォントを扱う仕組み
+author:
+  - 小形克宏
+---
+
 # Vivliostyle Pubがフォントを扱う仕組み
 
 小形克宏（一般社団法人ビブリオスタイル理事）
@@ -104,7 +110,7 @@ PDF出力のために組版をおこなうVivliostyle.jsは、クラウド上の
 
 [^1]: https://github.com/vivliostyle/vivliostyle-pub
 [^2]: https://vivliostyle-pub-develop.vercel.app/
-[^3]: https://github.com/vivliostyle/vivliostyle.js 
+[^3]: https://github.com/vivliostyle/vivliostyle.js
 [^4]: プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pubの前身である@spring-raining氏によるViola（https://github.com/violapub/viola ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。
 [^5]: https://vivliostyle.github.io/docs-vivliostyle-pub/#/ja/
 [^6]: そのVivliostyle Pubでコミットした履歴がこちら→https://github.com/ogwata/tbf13-draft/commits/main

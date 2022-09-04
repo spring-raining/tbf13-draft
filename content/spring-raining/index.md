@@ -1,9 +1,9 @@
 ---
-title: 未定
+title: あなたが知らないかもしれない CSS 変数活用法
 author: spring-raining
 ---
 
-# CSS Variable
+# あなたが知らないかもしれない CSS 変数活用法
 
 <div class="doc-author">
 spring-raining
