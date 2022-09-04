@@ -4,9 +4,14 @@
 @import url(partial/page-media.css);
 @import url(partial/toc.css);
 @import url(partial/footnote.css);
+@import url(partial/footnote-external-link.css);
 @import url(partial/section-counter.css);
 @import url(partial/crossref-counter.css);
 
 @import url(lib/prism/base.css);
 @import url(lib/prism/theme-prism.css);
 /* @import url(lib/prism/theme-okaidia.css); */
+
+:root {
+  --vs-footnote-font-size: 90%;
+}

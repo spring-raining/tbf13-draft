@@ -14,7 +14,7 @@ author:
 
 ![図1 アルファ版公開がはじまったVivliostyle Pub](./image/fig-1.png){width=400}
 
-さて、その Vivliostyle Pub だが、組版エンジン（[Vivliostyle.js](https://github.com/vivliostyle/vivliostyle.js)）がプレビュー用はローカル、PDF 出力用はクラウドという具合いに、別々の場所に実装されている。具体的な仕組みは後述するとして、このようにした理由はプレビュー表示を、少しでも早くしたかったからだ<span class="footnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pub の前身である@spring-raining 氏による Viola（https://github.com/violapub/viola）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。</span>。
+さて、その Vivliostyle Pub だが、組版エンジン（[Vivliostyle.js](https://github.com/vivliostyle/vivliostyle.js)）がプレビュー用はローカル、PDF 出力用はクラウドという具合いに、別々の場所に実装されている。具体的な仕組みは後述するとして、このようにした理由はプレビュー表示を、少しでも早くしたかったからだ<span class="footnote">プレビューのレスポンス向上のため組版エンジンをローカルにおくのは、Vivliostyle Pub の前身である@spring-raining 氏による Viola（ https://github.com/violapub/viola ）に由来する。ただし、ViolaにはまだPDFの出力機能は実装されていなかった。</span>。
 
 ところが、組版エンジンを分離させた結果、ユーザーが意識しないままプレビューと PDF 出力とでフォントが食い違う可能性が発生するようになった。もし両者のフォントが違えば、プレビューと PDF 出力とで行数やページ数が違ってしまう。
 
