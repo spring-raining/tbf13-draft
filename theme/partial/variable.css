@@ -46,6 +46,7 @@
   --vs-tab-size: 4;
   --vs-text-align: auto;
   --vs-text-align-last: auto;
+  --vs-text-align-figure: center;
   --vs-text-underline-offset: auto;
   --vs-text-underline-position: left;
   --vs-word-break: normal;
@@ -125,8 +126,8 @@
   --vs-margin-figure-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-figure-inline-start: calc(var(--vs-unit-sp) * 8);
   --vs-margin-figure-inline-end: calc(var(--vs-unit-sp) * 8);
-  --vs-margin-figcaption-block-start: 0;
-  --vs-margin-figcaption-block-end: 0;
+  --vs-margin-figcaption-block-start: var(--vs-margin-paragraph-block-start);
+  --vs-margin-figcaption-block-end: var(--vs-margin-paragraph-block-end);
   --vs-margin-figcaption-inline-start: 0;
   --vs-margin-figcaption-inline-end: 0;
   --vs-margin-list-block-start: var(--vs-margin-paragraph-block-start);

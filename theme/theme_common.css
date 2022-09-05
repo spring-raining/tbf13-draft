@@ -9,8 +9,11 @@
 @import url(partial/crossref-counter.css);
 
 @import url(lib/prism/base.css);
+@import url(font.css);
 
 :root {
+  --vs-font-family-body: body;
+  --vs-font-family-heading: heading;
   --vs-font-feature-settings-heading: 'palt', 'calt';
   --vs-footnote-font-size: 85%;
   --vs-line-height: 1.7;
@@ -27,6 +30,13 @@
   :root {
     --vs-font-size: 12px;
   }
+}
+
+:not(pre) > code,
+:not(pre) > kbd {
+  padding: 0.1em 0.3em;
+  border-radius: 0.3em;
+  background-color: #ecf0f1;
 }
 
 .doc-author {
