@@ -248,10 +248,22 @@ table {
   margin-block-end: var(--vs-margin-table-block-end);
   margin-inline-start: var(--vs-margin-table-inline-start);
   margin-inline-end: var(--vs-margin-table-inline-end);
-  border-block-start-width: var(--vs-border-width-table-block-start, 0);
-  border-block-end-width: var(--vs-border-width-table-block-end, 0);
-  border-inline-start-width: var(--vs-border-width-table-inline-start, 0);
-  border-inline-end-width: var(--vs-border-width-table-inline-end, 0);
+  border-block-start-width: var(
+    --vs-border-width-table-block-start,
+    var(--vs-border-width-table-outer, var(--vs-border-width-table))
+  );
+  border-block-end-width: var(
+    --vs-border-width-table-block-end,
+    var(--vs-border-width-table-outer, var(--vs-border-width-table))
+  );
+  border-inline-start-width: var(
+    --vs-border-width-table-inline-start,
+    var(--vs-border-width-table-outer, var(--vs-border-width-table))
+  );
+  border-inline-end-width: var(
+    --vs-border-width-table-inline-end,
+    var(--vs-border-width-table-outer, var(--vs-border-width-table))
+  );
 }
 
 th,
@@ -263,20 +275,32 @@ td {
 }
 
 tr:not(:last-child) {
-  border-block-end-width: var(--vs-border-width-table-row, 0);
+  border-block-end-width: var(
+    --vs-border-width-table-row,
+    var(--vs-border-width-table-cell, var(--vs-border-width-table))
+  );
 }
 
 thead > tr:last-child {
-  border-block-end-width: var(--vs-border-width-thead-inner, 0);
+  border-block-end-width: var(
+    --vs-border-width-thead-inner,
+    var(--vs-border-width-table-cell, var(--vs-border-width-table))
+  );
 }
 
 tfoot > tr:first-child {
-  border-block-start-width: var(--vs-border-width-tfoot-inner, 0);
+  border-block-start-width: var(
+    --vs-border-width-tfoot-inner,
+    var(--vs-border-width-table-cell, var(--vs-border-width-table))
+  );
 }
 
 th:not(:last-child),
 td:not(:last-child) {
-  border-inline-end-width: var(--vs-border-width-table-column, 0);
+  border-inline-end-width: var(
+    --vs-border-width-table-column,
+    var(--vs-border-width-table-cell, var(--vs-border-width-table))
+  );
 }
 
 img {

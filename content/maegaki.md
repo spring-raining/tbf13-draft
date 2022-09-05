@@ -18,6 +18,8 @@ author: spring-raining
 本書の内容に関して、正確性は保証できません。本書に書かれた情報を利用することで生じた結果に対して、著者はいかなる責任も負いません。
 もしこの本を読んで気づいたことや感想などがありましたら、編集者 Twitter アカウント [@spring_raining](https://twetter.com/spring_raining) や [harusamex.com@gmail.com](mailto:harusamex.com@gmail.com) 、各寄稿者へぜひご連絡ください。きっと喜んで答えてくれることと思います。
 
+<div class="page-break"></div>
+
 ## 無料公開について
 
 本書は電子版が <a href="https://vivliostyle.org/ja/samples/">Vivliostyle サンプルページ</a>に全篇が公開されています！　実際に Vivliostyle viewer を介してブラウザの印刷機能を使うことで、今ご覧になっている紙面をそのまま PDF として保存もできます。また、本書の CSS テーマや原稿も <a href="https://github.com/spring-raining/tbf13-draft">GitHub に公開</a>しているので、ぜひ参考にしてください。

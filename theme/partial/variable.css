@@ -154,16 +154,6 @@
   --vs-unit-bd: 1px;
   --vs-border-width-hr: var(--vs-unit-bd);
   --vs-border-width-table: var(--vs-unit-bd);
-  --vs-border-width-table-outer: var(--vs-border-width-table);
-  --vs-border-width-table-block-start: var(--vs-border-width-table-outer);
-  --vs-border-width-table-block-end: var(--vs-border-width-table-outer);
-  --vs-border-width-table-inline-start: var(--vs-border-width-table-outer);
-  --vs-border-width-table-inline-end: var(--vs-border-width-table-outer);
-  --vs-border-width-table-cell: var(--vs-border-width-table);
-  --vs-border-width-table-row: var(--vs-border-width-table-cell);
-  --vs-border-width-table-column: var(--vs-border-width-table-cell);
-  --vs-border-width-thead-inner: var(--vs-border-width-table-cell);
-  --vs-border-width-tfoot-inner: var(--vs-border-width-table-cell);
 
   /**
    * Lists
@@ -192,6 +182,7 @@
   --vs-page-margin-bottom: 22mm;
   --vs-page-margin-inner: 18mm;
   --vs-page-margin-outer: 18mm;
+  --vs-page-margin-font-size: var(--vs-font-size-body);
 
   /**
    * Footnotes

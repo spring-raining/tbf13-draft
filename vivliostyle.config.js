@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'tbf13-draft', // populated into `publication.json`, default to `title` of the first entry or `name` in `package.json`.
+  title: 'Vivliostyle で本を作ろう Vol. 6', // populated into `publication.json`, default to `title` of the first entry or `name` in `package.json`.
   author: '小形克宏 <ogwata@vivliostyle.org>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
   // size: 'A4', // paper size.

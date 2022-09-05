@@ -7,12 +7,12 @@
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
   "author": "小形克宏 <ogwata@vivliostyle.org>",
   "inLanguage": "ja",
-  "dateModified": "2022-09-04T10:32:45.015Z",
-  "name": "tbf13-draft",
+  "dateModified": "2022-09-05T15:26:50.626Z",
+  "name": "Vivliostyle で本を作ろう Vol. 6",
   "readingOrder": [
     {
       "url": "content/index.html",
-      "name": "tbf13-draft",
+      "name": "Vivliostyle で本を作ろう Vol. 6",
       "rel": "contents",
       "type": "LinkedResource"
     },

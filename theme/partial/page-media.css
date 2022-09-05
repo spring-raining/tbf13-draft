@@ -25,6 +25,7 @@
     margin-left: calc(var(--vs-page-bleed) * -1);
     padding-top: var(--vs-page-bleed);
     padding-left: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @top-left {
@@ -33,6 +34,7 @@
     color: var(--vs-color-page-margin-body);
     margin-top: calc(var(--vs-page-bleed) * -1);
     padding-top: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @top-center {
@@ -41,6 +43,7 @@
     color: var(--vs-color-page-margin-body);
     margin-top: calc(var(--vs-page-bleed) * -1);
     padding-top: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @top-right {
@@ -49,6 +52,7 @@
     color: var(--vs-color-page-margin-body);
     margin-top: calc(var(--vs-page-bleed) * -1);
     padding-top: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @top-right-corner {
@@ -59,6 +63,7 @@
     margin-right: calc(var(--vs-page-bleed) * -1);
     padding-top: var(--vs-page-bleed);
     padding-right: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @left-top {
@@ -67,6 +72,7 @@
     color: var(--vs-color-page-margin-body);
     margin-left: calc(var(--vs-page-bleed) * -1);
     padding-left: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @left-middle {
@@ -75,6 +81,7 @@
     color: var(--vs-color-page-margin-body);
     margin-left: calc(var(--vs-page-bleed) * -1);
     padding-left: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @left-bottom {
@@ -83,6 +90,7 @@
     color: var(--vs-color-page-margin-body);
     margin-left: calc(var(--vs-page-bleed) * -1);
     padding-left: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @right-top {
@@ -91,6 +99,7 @@
     color: var(--vs-color-page-margin-body);
     margin-right: calc(var(--vs-page-bleed) * -1);
     padding-right: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @right-middle {
@@ -99,6 +108,7 @@
     color: var(--vs-color-page-margin-body);
     margin-right: calc(var(--vs-page-bleed) * -1);
     padding-right: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @right-bottom {
@@ -107,6 +117,7 @@
     color: var(--vs-color-page-margin-body);
     margin-right: calc(var(--vs-page-bleed) * -1);
     padding-right: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
   @bottom-left-corner {
     content: '';
@@ -116,6 +127,7 @@
     margin-left: calc(var(--vs-page-bleed) * -1);
     padding-bottom: var(--vs-page-bleed);
     padding-left: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @bottom-left {
@@ -124,6 +136,7 @@
     color: var(--vs-color-page-margin-body);
     margin-bottom: calc(var(--vs-page-bleed) * -1);
     padding-bottom: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @bottom-center {
@@ -132,6 +145,7 @@
     color: var(--vs-color-page-margin-body);
     margin-bottom: calc(var(--vs-page-bleed) * -1);
     padding-bottom: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @bottom-right {
@@ -140,6 +154,7 @@
     color: var(--vs-color-page-margin-body);
     margin-bottom: calc(var(--vs-page-bleed) * -1);
     padding-bottom: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 
   @bottom-right-corner {
@@ -150,5 +165,6 @@
     margin-right: calc(var(--vs-page-bleed) * -1);
     padding-bottom: var(--vs-page-bleed);
     padding-right: var(--vs-page-bleed);
+    font-size: var(--vs-page-margin-font-size);
   }
 }

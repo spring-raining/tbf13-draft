@@ -55,7 +55,7 @@ Vivliostyle.js のベースになっている[Peter Sorotokin氏によるEPUB Ad
 vivliostyle preview https://webkit.org/demos/css-grid/
 ```
 
-![CSS Grid Layout ExamplesをVivliostyle CLIのpreviewで表示](images/css-grid.png){width=500}
+![CSS Grid Layout ExamplesをVivliostyle CLIのpreviewで表示](images/css-grid.png){width=80%}
 
 このように、これまで Vivliostyle で使えなかった CSS Grid Layout が使えるようになりました。
 
