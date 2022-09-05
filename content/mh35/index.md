@@ -5,6 +5,10 @@ author: "MH35"
 
 # GitLab CI/CD を用いた、Vivliostyle 組版事始め
 
+<div class="doc-author">
+MH35
+</div>
+
 GitLab CI/CD を用いて、Vivliostyle での製本を行うことにした。
 
 ## 前提条件

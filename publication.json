@@ -5,9 +5,9 @@
   ],
   "type": "Book",
   "conformsTo": "https://github.com/vivliostyle/vivliostyle-cli",
-  "author": "小形克宏 <ogwata@vivliostyle.org>",
+  "author": "spring-raining <harusamex.com@gmail.com>",
   "inLanguage": "ja",
-  "dateModified": "2022-09-05T15:26:50.626Z",
+  "dateModified": "2022-09-05T16:36:53.710Z",
   "name": "Vivliostyle で本を作ろう Vol. 6",
   "readingOrder": [
     {

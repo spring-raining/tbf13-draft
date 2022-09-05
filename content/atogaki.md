@@ -95,8 +95,8 @@
 
 <ul class="editions">
   <li>
-    <time datetime="2022-09-10">
-      2022 年 9 月 10 日
+    <time datetime="2022-09-11">
+      2022 年 9 月 11 日
     </time>
     初版発行
   </li>
@@ -122,7 +122,7 @@
       印刷
     </td>
     <td>
-      日光企画 (表紙: NP ホワイト 200kg マット PP 加工 / 本文: 上質紙 90kg)<br/>
+      日光企画 (表紙: NP ホワイト 200kg クリア PP 加工 / 本文: 上質紙 90kg)<br/>
       https://www.nikko-pc.com
     </td>
   </tr>

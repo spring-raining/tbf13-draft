@@ -10,12 +10,16 @@
   <body>
     <section id="rem-へ寄せてゆく" class="level1">
       <h1>rem へ寄せてゆく</h1>
+      <div class="doc-author">アカベコ</div>
       <p>CSS におけるサイズ単位のひとつである <code>rem</code>。これは主に文字を対象とするものだが、これを他の要素へ適用することについて考察する。</p>
       <section id="css-のサイズ単位" class="level2">
         <h2>CSS のサイズ単位</h2>
         <p>CSS のサイズ単位は絶対長と相対長へ大別される。詳細は以下の記事を参照のこと。</p>
         <ul>
-          <li>CSS の値と単位 - ウェブ開発を学ぶ | MDN<br><a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Values_and_units">https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Values_and_units</a></li>
+          <li>
+            CSS の値と単位 - ウェブ開発を学ぶ | MDN
+            <a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Values_and_units">https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Values_and_units</a>
+          </li>
         </ul>
         <p>絶対長は他の長さに影響されず、サイズは常に一定。代表的なものは <code>px</code> や <code>pt</code> など。ディスプレイ (以降、本記事ではこの語を PC 向けディスプレイとして用いる) や紙面などの出力媒体で定められた長さとなる。CSS は主に Web ブラウザーを対象とするため <code>px</code> を利用することが多い。本書のように紙面も想定しているならば <code>@media print</code> で <code>pt</code> や <code>cm</code> へ切り替えることもある。</p>
         <p>相対長はなんらかの長さに対してサイズが変化する。この性質により出力媒体によるサイズの差へ対応しやすい。代表的なものは <code>em</code>、そして本記事の主題である <code>rem</code> など。<code>%</code> は単位ではなく割合だが、用途としては相対なので本記事ではこちらに含める。</p>
@@ -176,8 +180,14 @@
         <p>本記事は Vivliostyle の本なので、おわりに本記事の主題と関係する Vivliostyle の新機能を紹介する。</p>
         <p>Vivliostyle は v2.17.0 で CSS 変数へ対応した。</p>
         <ul>
-          <li>Release v2.17.0 - vivliostyle/vivliostyle.js<br><a href="https://github.com/vivliostyle/vivliostyle.js/releases/tag/v2.17.0">https://github.com/vivliostyle/vivliostyle.js/releases/tag/v2.17.0</a></li>
-          <li>CSS カスタムプロパティ (変数) の使用 - CSS: カスケーディングスタイルシート | MDN<br><a href="https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties">https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties</a></li>
+          <li>
+            Release v2.17.0 - vivliostyle/vivliostyle.js
+            <a href="https://github.com/vivliostyle/vivliostyle.js/releases/tag/v2.17.0">https://github.com/vivliostyle/vivliostyle.js/releases/tag/v2.17.0</a>
+          </li>
+          <li>
+            CSS カスタムプロパティ (変数) の使用 - CSS: カスケーディングスタイルシート | MDN
+            <a href="https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties">https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties</a>
+          </li>
         </ul>
         <p>この機能を利用することでサイズ単位を抽象化できるかもしれない。Web と印刷を <code>@media</code> で分岐するように、サイズ指定をすべて CSS 変数化して出力媒体にあったものへ切り替えるのはどうか。</p>
         <p>レイアウト検証としても役立ちそうだ。</p>

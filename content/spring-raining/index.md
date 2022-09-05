@@ -9,9 +9,6 @@ author: spring-raining
 spring-raining
 </div>
 
-こんにちは、spring-raining です。
-
-
 先日、Vivliostyle に大きなアップデートがあり、現代のブラウザで普及が進みつつある CSS Variable (CSS 変数) が Vivliostyle でも使えるようになりました！
 この CSS Variable、実はこれまでの CSS の概念を大きく覆すものであり、私たちのような Web フロントエンドエンジニアにとってはもはや当たり前のように使われているものですが、最近の CSS の進化を知らない人にはまだまだその活用方法が知られていないようです。
 この記事では、CSS Variable で実現できることについて、実例を交えて紹介しようと思います。
@@ -147,8 +144,8 @@ CSS Variable ではどの色の指定方法も使えます。
 
 <style>
   .fancy-box {
-    --color-key: 200;
-    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    padding: 0.5rem 5rem;
     border-radius: 0.5rem;
     background: linear-gradient(
       hsl(var(--color-key) 100% 80%),
@@ -158,7 +155,13 @@ CSS Variable ではどの色の指定方法も使えます。
   }
 </style>
 
-<div class="fancy-box">Hi</div>
+<figure>
+  <div>
+    <span class="fancy-box" style="--color-key: 50;">color-key: 50</span>
+    <span class="fancy-box" style="--color-key: 200;">color-key: 200</span>
+  </div>
+  <figcaption><code>--color-key</code>による色相変化の例</figcaption>
+</figure>
 
 `hsl()` とは、1〜3 番目の引数にそれぞれ「色相 (Hue)」「彩度 (Saturation)」「明度 (Lightness)」を指定できる関数です。
 このうち 1 番目の色相のみ `var(--color-key)` として CSS Variable で指定することで、色相を固定したまま明るい色、くすんだ色などを表現しています。
@@ -253,8 +256,6 @@ CSS Variable と `calc()` を最大限に活用することで、棒グラフや
   </tbody>
 </table>
 ```
-
-<link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css">
 
 ![Charts.css によるレイアウト例](assets/chart-css-screenshot.png)
 

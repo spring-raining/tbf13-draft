@@ -6,7 +6,9 @@ author:
 
 # Vivliostyle Pub がフォントを扱う仕組み
 
+<div class="doc-author">
 小形克宏（一般社団法人ビブリオスタイル理事）
+</div>
 
 ## はじめに
 

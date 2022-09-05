@@ -125,6 +125,8 @@ h1:has(+ p) {
 
 例：箇条書きの番号の色とフォントを変える
 
+<div class="page-break"></div>
+
 ```html
 <style>
 ol > li::marker {

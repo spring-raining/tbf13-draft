@@ -5,13 +5,17 @@ author: "akabeko"
 
 # rem へ寄せてゆく
 
+<div class="doc-author">
+アカベコ
+</div>
+
 CSS におけるサイズ単位のひとつである `rem`。これは主に文字を対象とするものだが、これを他の要素へ適用することについて考察する。
 
 ## CSS のサイズ単位
 
 CSS のサイズ単位は絶対長と相対長へ大別される。詳細は以下の記事を参照のこと。
 
-- CSS の値と単位 - ウェブ開発を学ぶ | MDN  
+- CSS の値と単位 - ウェブ開発を学ぶ | MDN
   https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Values_and_units
 
 絶対長は他の長さに影響されず、サイズは常に一定。代表的なものは `px` や `pt` など。ディスプレイ (以降、本記事ではこの語を PC 向けディスプレイとして用いる) や紙面などの出力媒体で定められた長さとなる。CSS は主に Web ブラウザーを対象とするため `px` を利用することが多い。本書のように紙面も想定しているならば `@media print` で `pt` や `cm` へ切り替えることもある。
@@ -187,9 +191,9 @@ CSS のサイズ単位を `rem` 寄せにした場合の考察をまとめてみ
 
 Vivliostyle は v2.17.0 で CSS 変数へ対応した。
 
-- Release v2.17.0 - vivliostyle/vivliostyle.js  
+- Release v2.17.0 - vivliostyle/vivliostyle.js
   https://github.com/vivliostyle/vivliostyle.js/releases/tag/v2.17.0
-- CSS カスタムプロパティ (変数) の使用 - CSS: カスケーディングスタイルシート | MDN  
+- CSS カスタムプロパティ (変数) の使用 - CSS: カスケーディングスタイルシート | MDN
   https://developer.mozilla.org/ja/docs/Web/CSS/Using_CSS_custom_properties
 
 この機能を利用することでサイズ単位を抽象化できるかもしれない。Web と印刷を `@media` で分岐するように、サイズ指定をすべて CSS 変数化して出力媒体にあったものへ切り替えるのはどうか。

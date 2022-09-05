@@ -175,7 +175,8 @@ figure {
   margin-block-end: var(--vs-margin-figure-block-end);
   margin-inline-start: var(--vs-margin-figure-inline-start);
   margin-inline-end: var(--vs-margin-figure-inline-end);
-  text-align: var(--vs-text-align-figure);
+  text-align: center;
+  break-inside: avoid;
 }
 
 figure > img {
