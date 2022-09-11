@@ -3,7 +3,8 @@ module.exports = {
   author: 'spring-raining <harusamex.com@gmail.com>', // default to `author` in `package.json` or undefined.
   language: 'ja', // default to undefined.
   // size: 'A4', // paper size.
-  theme: 'theme/theme_print.css', // .css or local dir or npm package. default to undefined.
+  // theme: 'theme/theme_print.css',
+  theme: 'theme/theme_screen.css',
   entry: [
     {
       path: 'content/index.md',
