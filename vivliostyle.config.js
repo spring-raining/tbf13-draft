@@ -6,7 +6,7 @@ module.exports = {
   theme: 'theme/theme_print.css', // .css or local dir or npm package. default to undefined.
   entry: [
     {
-      path: 'content/index.html',
+      path: 'content/index.md',
       rel: 'contents',
     },
     'content/maegaki.md',
